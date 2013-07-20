@@ -1969,6 +1969,9 @@
   <file>
     <name>$PROJ_DIR$\UCS.h</name>
   </file>
+  <file>
+    <name>$PROJ_DIR$\zifu8x12.h</name>
+  </file>
 </project>
 
 

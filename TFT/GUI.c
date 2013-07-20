@@ -1,6 +1,8 @@
 #include "msp430x54x.h"
 #include "TFT.h"
 #include "GUI.h"
+#include "zifu8x12.h"
+
 void GUI_init(void)
 {
   TFT_init();
@@ -154,4 +156,85 @@ void Draw_Circle(unsigned int x0,unsigned int y0,unsigned int r, unsigned int co
       y--;      
     }   
   }
+}
+
+void Draw_Oval(unsigned int x, unsigned int y, unsigned int a, unsigned int b, unsigned int color) //中点算法绘制椭圆
+{
+    unsigned int xc=300,yc=200;
+    double d1,d2;
+    x=0;y=b;
+    d1=b*b+a*a*(-b+0.25);
+    Draw_Point(x+300,y+200,color);
+    Draw_Point(-x+300,y+200,color);
+    Draw_Point(x+300,-y+200,color);
+    Draw_Point(-x+300,-y+200,color);
+    while(b*b*(x+1)<a*a*(y-0.5))
+    {
+      if(d1<0)
+      {
+        d1+=b*b*(2*x+3);
+        x++;
+      }
+      else
+      {
+        d1+=b*b*(2*x+3)+a*a*(-2*y+2);
+        x++;y--;
+      }
+      Draw_Point(x+xc,y+yc,color);
+      Draw_Point(-x+xc,y+yc,color);
+      Draw_Point(x+xc,-y+yc,color);
+      Draw_Point(-x+xc,-y+yc,color);
+    }
+    d2=sqrt(b*(x+0.5))+a*(y-1)-a*b;
+    while(y>0)
+    {
+      if(d2<0)
+      {
+        d2+=b*b*(2*x+2)+a*a*(-2*y+3);
+        x++;
+        y--;
+      }
+      else
+      {
+        d2+=a*a*(-2*y+3);
+        y--;
+      }
+      Draw_Point(x+xc,y+yc,color);
+      Draw_Point(-x+xc,y+yc,color);
+      Draw_Point(x+xc,-y+yc,color);
+      Draw_Point(-x+xc,-y+yc,color);
+    }
+}
+
+//写入 单个字符
+//在指定位置显示一个字符(8*12大小)
+//dcolor为内容颜色，gbcolor为背静颜色
+void showzifu(unsigned int x,unsigned int y,unsigned char value,unsigned int dcolor,unsigned int bgcolor)	
+{  
+    unsigned char i,j;
+    unsigned int temp=0;    
+    LCD_CS_0;
+    Address_set(x,y,x+7,y+11);  //设置区域      
+	                    
+    temp+=(value-32)*12;   //确定要显示的值
+                           //这里用的是ascii表  前32个ascii没有存入zifu库里 所以要减32
+                           //并且 每个字符用12个字节显示 所以再乘以12  就是对应的显示位的首地址
+    for(j=0;j<12;j++)
+    {
+        for(i=0;i<8;i++)		    //先横扫
+        { 		     
+                if((zifu[temp]&(1<<(7-i)))!=0)					//将1 左移 然后对应位进行相与 
+                {
+                    Lcd_Write_Data(dcolor);
+                    //Draw_Point(x+i,y+j,dcolor);
+                } 
+                else
+                {
+                    Lcd_Write_Data(bgcolor);
+                    //Draw_Point(x+i,y+j,bgcolor);
+                }   
+        }
+        temp++;
+     }
+    LCD_CS_1;
 }

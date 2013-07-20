@@ -41,7 +41,7 @@
       
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-21983-15462</Identity>
@@ -53,7 +53,7 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd5>
         <Tabs>
           <Tab>
             <Identity>TabID-24889-15612</Identity>
@@ -69,20 +69,20 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1><Wnd3><Tabs><Tab><Identity>TabID-20744-21969</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3><Wnd4><Tabs><Tab><Identity>TabID-13870-7071</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd4></Windows>
+      <SelectedTab>0</SelectedTab></Wnd5><Wnd6><Tabs><Tab><Identity>TabID-20744-21969</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd6><Wnd7><Tabs><Tab><Identity>TabID-13870-7071</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd7></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\DHT11.c</Filename><XPos>0</XPos><YPos>135</YPos><SelStart>3044</SelStart><SelEnd>3044</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\LCD12864.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\LCD12864.c</Filename><XPos>0</XPos><YPos>280</YPos><SelStart>6071</SelStart><SelEnd>6071</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\delay.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>312</SelStart><SelEnd>312</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\DHT11.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>89</SelStart><SelEnd>89</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\TimerA1_PWM.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>79</SelStart><SelEnd>79</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\TimerA1_PWM.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>135</SelStart><SelEnd>148</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\delay.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>109</SelStart><SelEnd>109</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\MPY.c</Filename><XPos>0</XPos><YPos>12</YPos><SelStart>408</SelStart><SelEnd>408</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\PWM.c</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>744</SelStart><SelEnd>749</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\main.c</Filename><XPos>0</XPos><YPos>8</YPos><SelStart>366</SelStart><SelEnd>366</SelEnd></Tab><ActiveTab>10</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\DHT11.c</Filename><XPos>0</XPos><YPos>135</YPos><SelStart>3044</SelStart><SelEnd>3044</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\LCD12864.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\LCD12864.c</Filename><XPos>0</XPos><YPos>252</YPos><SelStart>3687</SelStart><SelEnd>5525</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\delay.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>312</SelStart><SelEnd>312</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\DHT11.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>89</SelStart><SelEnd>89</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\TimerA1_PWM.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>79</SelStart><SelEnd>79</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\TimerA1_PWM.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>135</SelStart><SelEnd>148</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\delay.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>109</SelStart><SelEnd>109</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\MPY.c</Filename><XPos>0</XPos><YPos>12</YPos><SelStart>408</SelStart><SelEnd>408</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\PWM.c</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>744</SelStart><SelEnd>749</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\test\main.c</Filename><XPos>0</XPos><YPos>8</YPos><SelStart>366</SelStart><SelEnd>366</SelEnd></Tab><ActiveTab>10</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00d0ddf0><key>iaridepm.enu1</key></Toolbar-00d0ddf0></Sizes></Row0><Row1><Sizes><Toolbar-00d73f30><key>debuggergui.enu1</key></Toolbar-00d73f30></Sizes></Row1><Row2><Sizes><Toolbar-00d73da0><key>430fet1</key></Toolbar-00d73da0></Sizes></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>435</Bottom><Right>269</Right><x>-2</x><y>-2</y><xscreen>271</xscreen><yscreen>310</yscreen><sizeHorzCX>198389</sizeHorzCX><sizeHorzCY>426997</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>601928</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>435</Bottom><Right>269</Right><x>-2</x><y>-2</y><xscreen>1855</xscreen><yscreen>310</yscreen><sizeHorzCX>1357980</sizeHorzCX><sizeHorzCY>426997</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>601928</sizeVertCY></Rect></Wnd1></Sizes></Row0><Row1><Sizes><Wnd3><Rect><Top>-2</Top><Left>267</Left><Bottom>435</Bottom><Right>538</Right><x>267</x><y>-2</y><xscreen>271</xscreen><yscreen>310</yscreen><sizeHorzCX>198389</sizeHorzCX><sizeHorzCY>426997</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>601928</sizeVertCY></Rect></Wnd3></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>200</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>275482</sizeHorzCY><sizeVertCX>146413</sizeVertCX><sizeVertCY>275482</sizeVertCY></Rect></Wnd4></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-026902b8><key>iaridepm.enu1</key></Toolbar-026902b8></Sizes></Row0><Row1><Sizes><Toolbar-027029f8><key>debuggergui.enu1</key></Toolbar-027029f8></Sizes></Row1><Row2><Sizes><Toolbar-02702c50><key>430fet1</key></Toolbar-02702c50></Sizes></Row2></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>435</Bottom><Right>269</Right><x>-2</x><y>-2</y><xscreen>271</xscreen><yscreen>310</yscreen><sizeHorzCX>198389</sizeHorzCX><sizeHorzCY>426997</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>601928</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>435</Bottom><Right>269</Right><x>-2</x><y>-2</y><xscreen>1855</xscreen><yscreen>310</yscreen><sizeHorzCX>1357980</sizeHorzCX><sizeHorzCY>426997</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>601928</sizeVertCY></Rect></Wnd5></Sizes></Row0><Row1><Sizes><Wnd6><Rect><Top>-2</Top><Left>267</Left><Bottom>435</Bottom><Right>538</Right><x>267</x><y>-2</y><xscreen>271</xscreen><yscreen>310</yscreen><sizeHorzCX>198389</sizeHorzCX><sizeHorzCY>426997</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>601928</sizeVertCY></Rect></Wnd6></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd7><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>200</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>275482</sizeHorzCY><sizeVertCX>146413</sizeVertCX><sizeVertCY>275482</sizeVertCY></Rect></Wnd7></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 
