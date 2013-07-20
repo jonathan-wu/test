@@ -4,10 +4,10 @@
 unsigned int CountDown = 0;
 unsigned char TimeBase = 0;
 
-void timerA1_init()
+void TimerA1_init()
 {
     TA1CCTL0 |= CCIE;                 //TA1CCR0 允许中断
-    TA1CCR0 = 4000;                   //设置延时时间(4MHz/4000=1KHz)
+    TA1CCR0 = 4000-1;                   //设置延时时间(4MHz/4000=1KHz)
     TA1CTL |= TASSEL_2;               //SMCLK
     TA1CTL |= MC_1;
 }

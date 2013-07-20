@@ -10,7 +10,9 @@
 //#include"DigtalTube.h"
 //#include"I2C.h"
 //#include"LCD12864.h"
-#include"DHT11.h"
+//#include"DHT11.h"
+#include"TimerA1_PWM.h"
+#include"PWM.h"
 
 volatile unsigned long long res;
 int main( void )
@@ -22,7 +24,7 @@ int main( void )
   
 //  ADC12_init();
   
-  timerA1_init();  
+  TimerA1_init();  
   
 //  RTC_init();
   
@@ -32,7 +34,11 @@ int main( void )
   
 //  I2C_Master_init();
   
-  DHT11_init();
+//  DHT11_init();
+  
+//  PWM_init();
+  
+//  TimerA1_PWM_init();
   
   _EINT();
 
@@ -50,8 +56,10 @@ int main( void )
 //  DigtalTube_set(0);
 //  ADC12CTL0 |= ADC12SC;
 //  UCB0IFG |= UCTXIFG;
+  
+  TimerA1_PWM_2(3000);
+
   while(1)
   {
-    DHT11_measure();
   }
 }

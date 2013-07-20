@@ -16,9 +16,10 @@ unsigned long MPY_16x16u(unsigned int a, unsigned int b)
   return ((temp << 16) + RESLO);
 }
 
+//remain unimplemented DO NOT USE
 unsigned long long MPY_32x32u(unsigned long a, unsigned long b)
 {
-  unsigned long long temp;
+  unsigned long long temp=0;
 
   _DINT();  
   MPY32CTL0 = MPYDLYWRTEN;   //延迟到所有结果寄存器准备好
@@ -32,5 +33,5 @@ unsigned long long MPY_32x32u(unsigned long a, unsigned long b)
   
   _EINT();
   __no_operation();
-  return 0;
+  return temp;
 }
