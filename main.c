@@ -9,7 +9,8 @@
 //#include"MPY.h"
 //#include"DigtalTube.h"
 //#include"I2C.h"
-#include"LCD12864.h"
+//#include"LCD12864.h"
+#include"DHT11.h"
 
 volatile unsigned long long res;
 int main( void )
@@ -31,6 +32,8 @@ int main( void )
   
 //  I2C_Master_init();
   
+  DHT11_init();
+  
   _EINT();
 
 /*  
@@ -40,14 +43,15 @@ int main( void )
   
   while(RTC_set(&ref));
 */  
-  LCD12864_init();
-  Display();
+//  LCD12864_init();
+//  Display();
   
 //  res = MPY_32x32u(0x12345678,0x12345678);
 //  DigtalTube_set(0);
 //  ADC12CTL0 |= ADC12SC;
 //  UCB0IFG |= UCTXIFG;
-  while(1);
-  {     
+  while(1)
+  {
+    DHT11_measure();
   }
 }

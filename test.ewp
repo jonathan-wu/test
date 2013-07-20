@@ -1961,6 +1961,9 @@
     <name>$PROJ_DIR$\delay.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\DHT11.c</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\DigtalTube.c</name>
   </file>
   <file>
