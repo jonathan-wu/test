@@ -11,7 +11,7 @@ volatile unsigned int results[Num_of_Results][2];
                                             // is not used for anything.
 
 unsigned char DataReady;
-double dist1,dist2;
+double dist1,dist2,dist3;
 
 void GP2Y0A02_DistCompute(double aver1,double aver2)
 {
@@ -47,6 +47,7 @@ void GP2Y0A02_DistCompute(double aver1,double aver2)
     else if (volt2 >0.87)
       dist2 = 70.0-(volt2-0.87)*6;
     
+    dist3=((1/volt1)-0.103309314204)/0.0143793026254; //参数还没调
 }
 
 void GP2Y0A02_DataProcess()
