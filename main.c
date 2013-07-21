@@ -3,7 +3,7 @@
 
 #include"UCS.h"
 #include"delay.h"
-//#include"adc12.h"
+#include"adc12.h"
 //#include"RTC.h"
 //#include"DMA.h"
 //#include"MPY.h"
@@ -11,8 +11,9 @@
 //#include"I2C.h"
 //#include"LCD12864.h"
 //#include"DHT11.h"
-#include"TimerA1_PWM.h"
-#include"PWM.h"
+//#include"TimerA1_PWM.h"
+//#include"PWM.h"
+#include"GP2Y0A02.h"
 
 volatile unsigned long long res;
 int main( void )
@@ -22,7 +23,7 @@ int main( void )
   
   UCS_init();
   
-//  ADC12_init();
+  ADC12_init();
   
   TimerA1_init();  
   
@@ -54,12 +55,14 @@ int main( void )
   
 //  res = MPY_32x32u(0x12345678,0x12345678);
 //  DigtalTube_set(0);
-//  ADC12CTL0 |= ADC12SC;
+  ADC12CTL0 |= ADC12SC;
 //  UCB0IFG |= UCTXIFG;
   
-  TimerA1_PWM_2(3000);
+//  TimerA1_PWM_2(3000);
 
   while(1)
   {
+    if (DataReady % 2 == 1)
+      GP2Y0A02_DataProcess();
   }
 }
