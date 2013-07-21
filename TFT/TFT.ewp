@@ -317,7 +317,7 @@
         </option>
         <option>
           <name>newCCIncludePaths</name>
-          <state></state>
+          <state>C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.0 Evaluation\430\inc\clib</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1948,6 +1948,9 @@
       <data/>
     </settings>
   </configuration>
+  <file>
+    <name>$PROJ_DIR$\CC.h</name>
+  </file>
   <file>
     <name>$PROJ_DIR$\GUI.c</name>
   </file>

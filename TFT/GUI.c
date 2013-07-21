@@ -2,6 +2,8 @@
 #include "TFT.h"
 #include "GUI.h"
 #include "zifu8x12.h"
+#include "math.h"
+#include "CC.h"
 
 void GUI_init(void)
 {
@@ -237,4 +239,20 @@ void showzifu(unsigned int x,unsigned int y,unsigned char value,unsigned int dco
         temp++;
      }
     LCD_CS_1;
+}
+
+void Draw_CC(unsigned int x,unsigned int y,unsigned char num, unsigned int dcolor, unsigned int bgcolor)
+{
+  unsigned int i,j;
+  LCD_CS_0;
+  Address_set(x,y,x+16-1,y+16-1);
+  for(  j=0; j<32 ; j++)
+    for( i=0; i<8; i++)
+    {
+      if ((CC[num][j] & (1<<(7-i)))!=0)
+        Lcd_Write_Data(dcolor);
+      else
+        Lcd_Write_Data(bgcolor);
+    }
+  LCD_CS_1;
 }

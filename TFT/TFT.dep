@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>992494966</fileChecksum>
+  <fileChecksum>995190781</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -30,6 +30,7 @@
       <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
       <file>$PROJ_DIR$\Debug\Obj\TFT.r43</file>
       <file>$PROJ_DIR$\Debug\Obj\TFT.pbi</file>
+      <file>$PROJ_DIR$\CC.h</file>
       <file>$PROJ_DIR$\zifu8x12.h</file>
       <file>$PROJ_DIR$\math.h</file>
     </outputs>
@@ -61,11 +62,11 @@
       <inputs>
         <tool>
           <name>ICC430</name>
-          <file> 9 12 19 2 1 24</file>
+          <file> 9 12 19 2 1 25 26</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 9 12 19 2 1 24</file>
+          <file> 9 12 19 2 1 25 26 24</file>
         </tool>
       </inputs>
     </file>
@@ -156,6 +157,22 @@
         </tool>
       </inputs>
     </file>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\GUI.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\TFT.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\main.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\UCS.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
   </configuration>
   <configuration>
     <name>Release</name>

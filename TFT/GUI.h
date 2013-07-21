@@ -11,4 +11,5 @@ extern void Draw_Line(unsigned int x1,unsigned int y1,unsigned int x2,unsigned i
 extern void Draw_Circle(unsigned int x0,unsigned int y0,unsigned int r, unsigned int color);
 extern void Draw_Oval(unsigned int x, unsigned int y, unsigned int a, unsigned int b, unsigned int color);
 extern void showzifu(unsigned int x,unsigned int y,unsigned char value,unsigned int dcolor,unsigned int bgcolor);
+extern void Draw_CC(unsigned int x,unsigned int y,unsigned char num,unsigned int dcolor,unsigned int bgcolor);
 #endif 
