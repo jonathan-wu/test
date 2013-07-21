@@ -2,7 +2,7 @@
 //#include"DigtalTube.h"
 
 unsigned int CountDown = 0;
-unsigned char TimeBase = 0;
+unsigned long TimeBase = 0;
 
 void TimerA1_init()
 {

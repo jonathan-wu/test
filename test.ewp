@@ -345,7 +345,7 @@
         </option>
         <option>
           <name>CCOptLevel</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCOptStrategy</name>
@@ -354,7 +354,7 @@
         </option>
         <option>
           <name>CCOptLevelSlave</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CInput</name>
@@ -2025,6 +2025,12 @@
   </file>
   <file>
     <name>$PROJ_DIR$\UCS.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\UltraSonic.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\UltraSonic.h</name>
   </file>
 </project>
 
