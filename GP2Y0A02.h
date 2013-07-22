@@ -1,6 +1,6 @@
 #ifndef GP2Y0A02_H_
 #define GP2Y0A02_H_
-extern volatile unsigned int results[][2];
+extern volatile unsigned int results[][1000];
 extern unsigned char DataReady;
 extern double dist1,dist2;
 

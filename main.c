@@ -63,7 +63,6 @@ int main( void )
   
 //  TimerA1_PWM_2(3000);
 
-  UltraSonic_Tx();
   while(1)
   {
 //≥¨…˘≤®≤‚ ‘    
