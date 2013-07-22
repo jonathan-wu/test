@@ -49,6 +49,7 @@ void GP2Y0A02_DistCompute(double aver1,double aver2)
       dist2 = 70.0-(volt2-0.87)*6;
     
     dist3=841010014232.0*dao*dao*dao-1808548607.43*dao*dao+1319702.47663*dao-289.751141638; //参数还没调
+    __no_operation();
 }
 
 void GP2Y0A02_DataProcess()
@@ -61,8 +62,8 @@ void GP2Y0A02_DataProcess()
   if (DataReady == 1)
     shift = 0;
   else shift = 500;
-/*    
-  for (j=0;j<100;j++)    //先尝试去掉50个最大、50个最小
+
+  for (j=0;j<100;j++)    //先尝试去掉100个最大、100个最小,再取平均
   {
     max = 0;
     min = 65535;

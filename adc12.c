@@ -34,10 +34,10 @@ __interrupt void ADC12ISR (void)
   case  2: break;                           // Vector  2:  ADC overflow
   case  4: break;                           // Vector  4:  ADC timing overflow
   case  6:                                  // Vector  6:  ADC12IFG0
-    results[index][0] = ADC12MEM0;             // Move results    
+    results[0][index] = ADC12MEM0;             // Move results    
     break;
   case  8:                                  // Vector  8:  ADC12IFG1
-    results[index][1] = ADC12MEM1;             // Move results    
+    results[1][index] = ADC12MEM1;             // Move results    
     index++;                                // Increment results index, modulo; Set Breakpoint1 here
     
     if (index % 500 == 0)
