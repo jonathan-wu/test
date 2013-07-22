@@ -11,10 +11,10 @@ void UltraSonic_init()
     P10DIR|= BIT2;
     P10OUT&=~BIT2;
       
-    P8DIR |= BIT6;           // P8.6 output
+    P8DIR &=~BIT6;           // P8.6 input
     P8SEL |= BIT6;	     // P8.6 options select
     
-    TA1CCTL1 = CM_3+CCIS_1+CAP;                    // CCR1 capture mode P8.6
+    TA1CCTL1 = CM_3+CCIS_1+CAP+SCS;                    // CCR1 capture mode P8.6
 
     TA1CCTL1 |= CCIE;
 }
@@ -22,7 +22,7 @@ void UltraSonic_init()
 void UltraSonic_Tx()
 {
     P10OUT  |= BIT2;
-    delay_us(20);
+    delay_us(10);
     P10OUT  &=~BIT2;
 }
 

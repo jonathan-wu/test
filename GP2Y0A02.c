@@ -114,3 +114,8 @@ void GP2Y0A02_DataProcess()
   GP2Y0A02_DistCompute((double)sum1/300.0,(double)sum2/300.0);
   DataReady ++;
 }
+
+void GP2Y0A02_Calibration()
+{
+  
+}
