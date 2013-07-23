@@ -1,7 +1,7 @@
 #include"msp430f5438.h"
 #include"delay.h"
 
-#define WDT_PWM_
+//#define WDT_PWM_
 #ifdef WDT_PWM_
 #define WDT_CYCLE 125
   unsigned char WDT_cnt   = 0;
