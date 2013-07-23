@@ -1,6 +1,8 @@
-
 #include"msp430f5438.h"
 
+#define WDT_PWM_
+
+#include"WDT.h"
 #include"UCS.h"
 #include"delay.h"
 #include"adc12.h"
@@ -19,8 +21,7 @@
 volatile unsigned long long res;
 int main( void )
 {
-  // Stop watchdog timer to prevent time out reset
-  WDTCTL = WDTPW + WDTHOLD;
+  WDT_init();
   
   UCS_init();
   
@@ -75,7 +76,9 @@ int main( void )
     if (sonicDist!=0)
       sonicDist=0;*/
 //∫ÏÕ‚≤‚ ‘
-    if (DataReady % 2 == 1)
-      GP2Y0A02_DataProcess();
+//    if (DataReady % 2 == 1)
+//      GP2Y0A02_DataProcess();
+//PWM
+    WDT_PWM1();
   }
 }

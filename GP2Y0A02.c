@@ -111,7 +111,7 @@ void GP2Y0A02_DataProcess()
     sum2  +=results[1][i];
   }
   
-  GP2Y0A02_DistCompute((double)sum1/300.0,(double)sum2/300.0);
+  GP2Y0A02_DistCompute((double)sum1/300,(double)sum2/300);
   DataReady ++;
 }
 

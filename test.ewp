@@ -2032,6 +2032,12 @@
   <file>
     <name>$PROJ_DIR$\UltraSonic.h</name>
   </file>
+  <file>
+    <name>$PROJ_DIR$\WDT.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\WDT.h</name>
+  </file>
 </project>
 
 
