@@ -80,6 +80,7 @@
       <file>$PROJ_DIR$\Debug\Obj\test.pbd</file>
       <file>$PROJ_DIR$\Debug\Obj\adc12.r43</file>
       <file>$TOOLKIT_DIR$\inc\msp430f5438.h</file>
+      <file>$PROJ_DIR$\Hall.c</file>
       <file>$PROJ_DIR$\Debug\Obj\Motor.pbi</file>
       <file>$PROJ_DIR$\Motor.c</file>
       <file>$PROJ_DIR$\Debug\Obj\Motor.r43</file>
@@ -90,7 +91,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 9 70 0 30 1 20 18 17 13 76 32 69 41 40 22 14 72 34 2 11</file>
+          <file> 9 70 0 30 1 20 18 17 13 77 32 69 41 40 22 14 72 34 2 11</file>
         </tool>
       </inputs>
     </file>
@@ -328,12 +329,8 @@
       </outputs>
       <inputs>
         <tool>
-          <name>BICOMP</name>
-          <file> 73 5 4 66 62 26 56 77</file>
-        </tool>
-        <tool>
           <name>ICC430</name>
-          <file> 73 5 4 66 62 26 56 77</file>
+          <file> 73 5 4 66 62 26 56 78</file>
         </tool>
       </inputs>
     </file>
@@ -503,7 +500,7 @@
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 42 8 3 21 12 68 36 74 67 10 39 31 19 15 29 38 33</file>
+          <file> 42 8 3 21 12 68 36 75 67 10 39 31 19 15 29 38 33</file>
         </tool>
       </inputs>
     </file>
@@ -512,11 +509,11 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 74</file>
+          <file> 75</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 76</file>
+          <file> 77</file>
         </tool>
       </outputs>
       <inputs>
