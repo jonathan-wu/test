@@ -1,6 +1,31 @@
 #include "msp430f5438.h"
 
-void Hall_init()
+unsigned int Hall_Result;
+
+unsigned int Hall_convert()
 {
-    ADC12CTL0 &= ~ADC12ENC;    //失能转换
+  Hall_Result = 0;
+  
+  ADC12CTL0 &=~ADC12ENC;                //结束当次转换
+  while(ADC12CTL1 & ADC12BUSY);
+  
+  ADC12MCTL1&=~ADC12EOS;                
+  ADC12MCTL2|= ADC12EOS;                //设置结束位
+  
+  ADC12CTL0 |= ADC12ENC;
+  
+  ADC12CTL0 |= ADC12SC;                 //开始下次转换（包含霍尔）
+  
+  while(!Hall_Result);
+  
+  ADC12CTL0 &=~ADC12ENC;
+  while(ADC12CTL1 & ADC12BUSY);         //等待转换完成
+  
+  ADC12MCTL1|= ADC12EOS;                
+  ADC12MCTL2&=~ADC12EOS;                //设置结束位
+  
+  ADC12CTL0 |= ADC12ENC;
+
+  ADC12CTL0 |= ADC12SC;                 //重开之前转换
+  return Hall_Result;  
 }

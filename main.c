@@ -15,8 +15,9 @@
 //#include"DHT11.h"
 //#include"TimerA1_PWM.h"
 //#include"PWM.h"
-//#include"GP2Y0A02.h"
+#include"GP2Y0A02.h"
 //#include"UltraSonic.h"
+#include"Hall.h"
 
 //#include"Motor.h"
 
@@ -47,7 +48,7 @@ int main( void )
   
 //  UltraSonic_init();
   
-  Motor_init();
+//  Motor_init();
   
   _EINT();
 
@@ -94,8 +95,8 @@ int main( void )
     if (sonicDist!=0)
       sonicDist=0;*/
 //∫ÏÕ‚≤‚ ‘
-//    if (DataReady % 2 == 1)
-//      GP2Y0A02_DataProcess();
+    if (DataReady % 2 == 1)
+      Hall_convert();
 //PWM
 //    WDT_PWM1();
   }

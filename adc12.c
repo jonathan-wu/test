@@ -1,11 +1,12 @@
 #include<msp430f5438.h>
 #include"GP2Y0A02.h"
+#include"Hall.h"
 
 //采样多个通道时，设置模式为重复多通道，设置ADC12MCTLn寄存器，注意设置结束位ADC12EOS，根据需要设置中断
 //io口设置为模拟量入口An
 void ADC12_init()
 {
-  ADC12CTL0 |= ADC12SHT0_8+ ADC12MSC+ ADC12ON;  //设置采样时间为64个adc时钟周期，多次采样，开启adc
+  ADC12CTL0 |= ADC12SHT0_3+ ADC12MSC+ ADC12ON;  //设置采样时间为32个adc时钟周期，多次采样，开启adc
   ADC12CTL1 |= ADC12SHP+ ADC12SSEL_3+ ADC12CONSEQ_3;    //使能采样时钟，选择时钟源为SMCLK, 设置为重复序列模式
   ADC12CTL2 |= ADC12RES_2;  //设置分辨率为12位
   
@@ -16,6 +17,10 @@ void ADC12_init()
   P6SEL |= BIT1;
   ADC12MCTL1|= ADC12SREF_0+ ADC12INCH_1;//设置+-参考电压分别为Vcc与Vss， 通道为A1
   ADC12IE   |= ADC12IE1;                    //使能中断
+
+  P6SEL |= BIT2;
+  ADC12MCTL2|= ADC12SREF_0+ ADC12INCH_2;//设置+-参考电压分别为Vcc与Vss， 通道为A2
+  ADC12IE   |= ADC12IE2;                    //使能中断
   
   ADC12MCTL1|= ADC12EOS;                //设置结束位
     
@@ -51,7 +56,9 @@ __interrupt void ADC12ISR (void)
       index = 0;
     }
     break;                           
-  case 10: break;                           // Vector 10:  ADC12IFG2
+  case 10:                                  // Vector 10:  ADC12IFG2
+    Hall_Result = ADC12MEM2;
+    break;
   case 12: break;                           // Vector 12:  ADC12IFG3
   case 14: break;                           // Vector 14:  ADC12IFG4
   case 16: break;                           // Vector 16:  ADC12IFG5

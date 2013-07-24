@@ -1982,6 +1982,12 @@
     <name>$PROJ_DIR$\GP2Y0A02.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\Hall.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\Hall.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\I2C.c</name>
   </file>
   <file>
