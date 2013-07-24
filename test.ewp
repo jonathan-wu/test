@@ -2015,6 +2015,12 @@
     <name>$PROJ_DIR$\MPY.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\PhotoelectricEncoder.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\PhotoelectricEncoder.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\PWM.c</name>
   </file>
   <file>
@@ -2031,6 +2037,18 @@
   </file>
   <file>
     <name>$PROJ_DIR$\TimerA1_PWM.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\TimerB0.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\TimerB0.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\UART.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\UART.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\UCS.c</name>

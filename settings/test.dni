@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=1548369898
+Checksum=-2005121481
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -53,7 +53,7 @@ Fmt1={W}0:presentMin	3	0
 Fmt2={W}0:presentSec	3	0
 [Breakpoints]
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\I2C.c}.36.3" 1 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\main.c}.99.7" 1 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "Memory:0x605A" 0 0 0 0 "" 0 ""
 Count=2
 [FET]
 Clock mode=14

@@ -19,9 +19,13 @@
 //#include"UltraSonic.h"
 //#include"Hall.h"
 
-//#include"Motor.h"
+#include"Motor.h"
+#include"TimerB0.h"
+#include"PhotoelectricEncoder.h"
 
-volatile unsigned long long res;
+//#include"UART.h"
+
+  int j,i=500,flag=1,k;
 int main( void )
 {
   WDT_init();
@@ -30,7 +34,9 @@ int main( void )
   
   TimerA1_init();    
   
-  ADC12_init();
+  TimerB0_init();
+  
+//  ADC12_init();
   
 //  RTC_init();
   
@@ -47,8 +53,12 @@ int main( void )
 //  TimerA1_PWM_init();
   
 //  UltraSonic_init();
+
+//  UART_init(UCA0,9600);
   
-//  Motor_init();
+  Motor_init();
+  
+  PhotoelectricEncoder_init();
   
   _EINT();
 
@@ -68,13 +78,14 @@ int main( void )
 //  UCB0IFG |= UCTXIFG;
   
 //  TimerA1_PWM_2(3000);
-//  int j,i=500,flag=1,k;
+
   
   
   while(1)
   {
-/*    
-    if((TimeBase % 12000 == 0)&&(k!=TimeBase)) 
+    
+    if((TimeBase % 12000 == 0)
+       &&(k!=TimeBase)) 
     {
       k=TimeBase;
       flag ^=1;
@@ -84,8 +95,10 @@ int main( void )
     else if(6<=j&&j<=10) i=1500-j*100;
     else i=0;
     if (flag)
-      Motor_config(i,i,i,i);
-    else Motor_config(-i,-i,-i,-i);*/
+      Motor_config(0,i,0,0);
+    else Motor_config(0,-i,-0,-0);
+    
+//    UART_sendstr(UCA0,(char *)&L_T);
     
 //³¬Éù²¨²âÊÔ    
 /*    if (TimeBase %1000==0)
