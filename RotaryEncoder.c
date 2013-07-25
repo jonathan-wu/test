@@ -4,7 +4,7 @@
 #ifdef RotaryEncoder_Used_
 //unsigned int A_before,A_now,A_T,A_interval;
 //unsigned int B_before,B_now,B_T,B_interval;
-volatile unsigned long pulseCnt;
+volatile signed long pulseCnt;
 
 //P4.1,P4.2捕获,P9.6,P9.7IO口判断电平(输入模式，下拉电阻)
 //CM_0不捕获，CM_1上升沿,CM_2下降沿,CM_3都捕获

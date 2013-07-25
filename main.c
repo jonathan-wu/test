@@ -5,6 +5,7 @@
 #include"WDT.h"
 #include"UCS.h"
 #include"TimerA1.h"
+#include"TimerB0.h"
 #include"delay.h"
 //#include"adc12.h"
 //#include"RTC.h"
@@ -21,13 +22,13 @@
 //#include"Hall.h"
 
 //#include"Motor.h"
-#include"TimerB0.h"
-//#include"PhotoelectricEncoder.h"
+
+#include"PhotoelectricEncoder.h"
 #include"RotaryEncoder.h"
 
-//#include"UART.h"
+#include"UART.h"
 
-  int j,i=500,flag=1,k;
+  int j,i=500,flag=1,k,nowtime;
 int main( void )
 {
   WDT_init();
@@ -87,11 +88,12 @@ int main( void )
   
   while(1)
   {
-/*    
-    if((TimeBase % 12000 == 0)
-       &&(k!=TimeBase)) 
+/*
+    nowtime = TimeBase;
+    if((nowtime % 12000 == 0)
+       &&(k!=nowtime)) 
     {
-      k=TimeBase;
+      k=nowtime;
       flag ^=1;
     }
     j=(TimeBase/1000)%12;
@@ -100,9 +102,9 @@ int main( void )
     else i=0;
     if (flag)
       Motor_config(0,i,0,0);
-    else Motor_config(0,-i,-0,-0);*/
+    else Motor_config(0,-i,-0,-0);
     
-//    UART_sendstr(UCA0,(char *)&L_T);
+    UART_sendstr(UCA0,(char *)&L_T);*/
     
 //≥¨…˘≤®≤‚ ‘    
 /*    if (TimeBase %1000==0)

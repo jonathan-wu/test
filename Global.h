@@ -1,3 +1,4 @@
+//PhotoelectricEncoder与RotaryEncoder不能一起使用
 #ifndef GLOBAL_H_
 #define GLOBAL_H_
 //#define DigtalTube_Used_ 

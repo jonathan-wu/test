@@ -22,7 +22,7 @@ void UART_init(unsigned char UCAx,unsigned long int baud)
 		UCA0MCTL = UCBRS_6+UCBRF_0;
 	    }
 	    UCA0CTL1 &= ~UCSWRST;
-            UCA0IE |= UCTXIE + UCRXIE;
+//            UCA0IE |= UCTXIE + UCRXIE;
 	} break;
 	case UCA1:
           {
