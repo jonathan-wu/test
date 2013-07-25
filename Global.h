@@ -4,5 +4,6 @@
 //#define DigtalTube_Used_ 
 //#define WDT_PWM_Used_
 //#define PhotoelectricEncoder_Used_
-#define RotaryEncoder_Used_
+//#define RotaryEncoder_Used_
+#define StepMotor_Used_
 #endif

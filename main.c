@@ -23,10 +23,11 @@
 
 //#include"Motor.h"
 
-#include"PhotoelectricEncoder.h"
-#include"RotaryEncoder.h"
+//#include"PhotoelectricEncoder.h"
+//#include"RotaryEncoder.h"
 
-#include"UART.h"
+//#include"UART.h"
+#include"StepMotor.h"
 
   int j,i=500,flag=1,k,nowtime;
 int main( void )
@@ -63,7 +64,9 @@ int main( void )
   
 //  PhotoelectricEncoder_init();
   
-  RotaryEncoder_init();
+//  RotaryEncoder_init();
+  
+  StepMotor_init();
   
   _EINT();
 
@@ -84,7 +87,7 @@ int main( void )
   
 //  TimerA1_PWM_2(3000);
 
-  
+  while(StepMotor_set(5000,1,0));
   
   while(1)
   {

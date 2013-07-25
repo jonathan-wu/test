@@ -1,4 +1,7 @@
 #include"msp430f5438.h"
+#include"Global.h"
+#include"DigtalTube.h"
+#include"StepMotor.h"
 
 extern unsigned int CountDown;
 volatile unsigned long TimeBase = 0;
@@ -14,6 +17,12 @@ void TimerA1_init()
 #pragma vector = TIMER1_A0_VECTOR
 __interrupt void TA1ISR(void)
 {
+  
+#ifdef StepMotor_Used_
+  static unsigned char StepLogic[2] = {0,0};
+  unsigned char i;
+#endif
+  
   TimeBase ++;
 
   if (CountDown != 0)
@@ -50,6 +59,23 @@ __interrupt void TA1ISR(void)
       if (Display_Number[0]==4)
         P9OUT &= ~BIT7;      
       break;
+    }
+#endif    
+    
+#ifdef StepMotor_Used_
+    if (TimeBase % StepMotor_interval==0)
+    {
+      P3OUT = 0;
+      for ( i=0; i<2; i++)
+        if (StepCnt[i] != 0)
+        {
+            StepCnt[i]--;
+            if (StepDir[i] == 0) StepLogic[i] ++;
+                    else StepLogic[i] --;
+            if (StepLogic[i] > 4) StepLogic[i] = 1;
+            if (StepLogic[i] < 1) StepLogic[i] = 4;
+            P3OUT |= 1 << (StepLogic[i]-1 + (i << 2));
+        }
     }
 #endif    
 }

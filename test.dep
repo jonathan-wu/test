@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>3822326016</fileChecksum>
+  <fileChecksum>1716972143</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -101,6 +101,10 @@
       <file>$PROJ_DIR$\LCD12864.h</file>
       <file>$PROJ_DIR$\main.c</file>
       <file>$PROJ_DIR$\Motor.c</file>
+      <file>$PROJ_DIR$\StepMotor.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\StepMotor.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\StepMotor.pbi</file>
+      <file>$PROJ_DIR$\StepMotor.c</file>
       <file>$PROJ_DIR$\RotaryEncoder.c</file>
       <file>$PROJ_DIR$\RotaryEncoder.h</file>
       <file>$PROJ_DIR$\Debug\Obj\RotaryEncoder.pbi</file>
@@ -115,7 +119,7 @@
       <inputs>
         <tool>
           <name>BILINK</name>
-          <file> 1 18 22 42 11 25 3 69 9 2 36 23 97 100 73 33 37 66 40 28 44 75 68</file>
+          <file> 1 18 22 42 11 25 3 69 9 2 36 23 101 97 104 73 33 37 66 40 28 44 75 68</file>
         </tool>
       </inputs>
     </file>
@@ -124,7 +128,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 17 5 13 45 14 41 12 39 32 26 10 67 34 4 102 98 0 38 35 74 43 27 7 70 15 24</file>
+          <file> 17 5 13 45 14 41 12 39 32 26 10 67 34 4 106 96 102 0 38 35 74 43 27 7 70 15 24</file>
         </tool>
       </inputs>
     </file>
@@ -156,21 +160,21 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 100</file>
+          <file> 104</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 98</file>
+          <file> 102</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21</file>
+          <file> 8 20 21 103 82 95</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21</file>
+          <file> 8 20 21 103 82 95</file>
         </tool>
       </inputs>
     </file>
@@ -189,11 +193,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21 103</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21 103</file>
         </tool>
       </inputs>
     </file>
@@ -350,11 +354,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 61 101 77</file>
+          <file> 8 20 21 61 105 77</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 61 101 77</file>
+          <file> 8 20 21 61 105 77</file>
         </tool>
       </inputs>
     </file>
@@ -373,11 +377,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21 103</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21 103</file>
         </tool>
       </inputs>
     </file>
@@ -455,11 +459,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 101 77</file>
+          <file> 8 20 21 105 77</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 101 77</file>
+          <file> 8 20 21 105 77</file>
         </tool>
       </inputs>
     </file>
@@ -501,11 +505,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21 103</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21 103</file>
         </tool>
       </inputs>
     </file>
@@ -593,11 +597,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 82 99</file>
+          <file> 8 20 21 82 103</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 82 99</file>
+          <file> 8 20 21 82 103</file>
         </tool>
       </inputs>
     </file>
@@ -616,11 +620,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 101 77</file>
+          <file> 8 20 21 105 77</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 101 77</file>
+          <file> 8 20 21 105 77</file>
         </tool>
       </inputs>
     </file>
@@ -639,11 +643,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 99 65 61 101 57 77 49 96 59</file>
+          <file> 8 20 21 103 65 61 105 57 77 95</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 99 65 61 101 57 77 49 96 59</file>
+          <file> 8 20 21 103 65 61 105 57 77 95</file>
         </tool>
       </inputs>
     </file>
@@ -671,7 +675,7 @@
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\RotaryEncoder.c</name>
+      <name>$PROJ_DIR$\StepMotor.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
@@ -679,17 +683,40 @@
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 102</file>
+          <file> 96</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 99</file>
+          <file> 8 20 21</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\RotaryEncoder.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 101</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 106</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8 20 21 103</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 8 20 21 103</file>
         </tool>
       </inputs>
     </file>

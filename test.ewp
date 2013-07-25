@@ -2042,6 +2042,12 @@
     <name>$PROJ_DIR$\RTC.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\StepMotor.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\StepMotor.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\TimerA1.c</name>
   </file>
   <file>
