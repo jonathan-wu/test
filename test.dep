@@ -308,11 +308,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 72 20 21 59</file>
+          <file> 72 20 21 103 59</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 72 20 21 59</file>
+          <file> 72 20 21 103 59</file>
         </tool>
       </inputs>
     </file>
@@ -643,11 +643,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8 20 21 103 65 61 105 57 77 95</file>
+          <file> 8 20 21 103 65 61 105 57 77 29 49 59</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 8 20 21 103 65 61 105 57 77 95</file>
+          <file> 8 20 21 103 65 61 105 57 77 29 49 59</file>
         </tool>
       </inputs>
     </file>

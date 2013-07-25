@@ -293,7 +293,7 @@ void Display(void)
   LCD12864_wrCmd(0x34);
   }
 
-  LCD12864_wrCmd(0x30);  //开启基本指令集  
+//  LCD12864_wrCmd(0x30);  //开启基本指令集  
 }
 
 //需要放在开总中断之后
