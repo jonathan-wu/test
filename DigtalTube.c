@@ -1,5 +1,6 @@
 #include"msp430f5438.h"
-
+#include"Global.h"
+#ifdef DigtalTube_Used_
 unsigned int Display_Number[5];
 unsigned char Digtal[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90,0xFF,0xBF};
 
@@ -23,3 +24,4 @@ void DigtalTube_set(unsigned int Number)
   Display_Number[3] =  Number/10-Display_Number[0]*1000-Display_Number[1]*100-Display_Number[2]*10;
   Display_Number[4] =  Number-Display_Number[0]*10000-Display_Number[1]*1000-Display_Number[2]*100-Display_Number[3]*10;
 }
+#endif

@@ -1,5 +1,7 @@
 #include"msp430f5438.h"
+#include"Global.h"
 
+#ifdef PhotoelectricEncoder_Used_
 unsigned int L_before,L_now,L_T,L_interval;
 unsigned int R_before,R_now,R_T,R_interval;
 
@@ -52,3 +54,5 @@ __interrupt void TimerB0_ISR()
   if (R_interval  > 200)
     R_T=0;  
 }
+
+#endif

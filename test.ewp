@@ -1976,6 +1976,9 @@
     <name>$PROJ_DIR$\DMA.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\Global.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\GP2Y0A02.c</name>
   </file>
   <file>
@@ -2025,6 +2028,12 @@
   </file>
   <file>
     <name>$PROJ_DIR$\PWM.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\RotaryEncoder.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\RotaryEncoder.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\RTC.c</name>

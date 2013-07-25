@@ -2,7 +2,7 @@
 #include"DigtalTube.h"
 
 //该版本I2C没有经过调试，不要使用
-
+/*
 unsigned char RXData,TXData;
 void I2C_Master_init()
 {
@@ -56,3 +56,4 @@ __interrupt void USCI_B0_ISR(void)
   default: break; 
   }
 }
+*/

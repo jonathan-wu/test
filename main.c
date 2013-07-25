@@ -20,9 +20,10 @@
 //#include"UltraSonic.h"
 //#include"Hall.h"
 
-#include"Motor.h"
+//#include"Motor.h"
 #include"TimerB0.h"
-#include"PhotoelectricEncoder.h"
+//#include"PhotoelectricEncoder.h"
+#include"RotaryEncoder.h"
 
 //#include"UART.h"
 
@@ -57,9 +58,11 @@ int main( void )
 
 //  UART_init(UCA0,9600);
   
-  Motor_init();
+//  Motor_init();
   
-  PhotoelectricEncoder_init();
+//  PhotoelectricEncoder_init();
+  
+  RotaryEncoder_init();
   
   _EINT();
 
@@ -84,7 +87,7 @@ int main( void )
   
   while(1)
   {
-    
+/*    
     if((TimeBase % 12000 == 0)
        &&(k!=TimeBase)) 
     {
@@ -97,7 +100,7 @@ int main( void )
     else i=0;
     if (flag)
       Motor_config(0,i,0,0);
-    else Motor_config(0,-i,-0,-0);
+    else Motor_config(0,-i,-0,-0);*/
     
 //    UART_sendstr(UCA0,(char *)&L_T);
     

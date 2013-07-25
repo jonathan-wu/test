@@ -22,7 +22,7 @@ __interrupt void TA1ISR(void)
   }
   
 /* ˝¬Îπ‹…®√Ë≥Ã–Ú*/  
-#ifdef DigtalTube_H_ 
+#ifdef DigtalTube_Used_
     P7OUT &= ~(BIT4+ BIT5+ BIT6+ BIT7);  
     switch(TimeBase % 4)
     {
@@ -53,4 +53,3 @@ __interrupt void TA1ISR(void)
     }
 #endif    
 }
-

@@ -4,7 +4,7 @@
 //WDT_PWM主要为舵机使用
 //如果使用WDT_PWM，一个最小WDT溢出周期为2ms/125=16us
 //一个PWM周期为2ms,占空比用0~125表示，0表示0%,125表示100%
-#ifdef WDT_PWM_
+#ifdef WDT_PWM_Used_
 #define WDT_CYCLE 125
   unsigned char WDT_cnt   = 0;
   unsigned char WDT_duty1 = 0;
@@ -12,7 +12,7 @@
 
 void WDT_init()
 {
-#ifdef WDT_PWM_
+#ifdef WDT_PWM_Used
   WDTCTL = WDTPW + WDTSSEL__SMCLK + WDTTMSEL + WDTIS_7;
   SFRIE1  |= WDTIE;
   
@@ -28,7 +28,7 @@ void WDT_init()
 #endif
 }
 
-#ifdef WDT_PWM_
+#ifdef WDT_PWM_Used
 void WDT_PWM_1(unsigned int n)
 {
   WDT_duty1 = n;
