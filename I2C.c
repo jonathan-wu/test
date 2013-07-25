@@ -1,6 +1,8 @@
 #include"msp430f5438.h"
 #include"DigtalTube.h"
 
+//该版本I2C没有经过调试，不要使用
+
 unsigned char RXData,TXData;
 void I2C_Master_init()
 {

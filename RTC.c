@@ -1,5 +1,7 @@
 #include "msp430f5438.h"
 
+//RTC²»ÄÜÓÃ
+
 typedef struct{
   unsigned char sec;
   unsigned char min;

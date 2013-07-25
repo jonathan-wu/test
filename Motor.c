@@ -11,6 +11,10 @@ void Motor_init()
   MOTOROUT =  0;
 }
 
+//PWM调整马达速率函数
+//入口参数：l1,l2,r1,r2为-1000~1000的signed int 值
+//负数代表反转
+
 void Motor_config(signed int l1, signed int l2, signed int r1, signed int r2)
 {
   if(l1 >= 0)

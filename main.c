@@ -1,9 +1,10 @@
 #include"msp430f5438.h"
 
-//#define WDT_PWM_
+#include"Global.h"
 
 #include"WDT.h"
 #include"UCS.h"
+#include"TimerA1.h"
 #include"delay.h"
 //#include"adc12.h"
 //#include"RTC.h"

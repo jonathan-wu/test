@@ -1,4 +1,5 @@
 #include"msp430f5438.h"
+#include"TimerA1.h"
 #include"delay.h"
 
 //DATA口定义为P10.1

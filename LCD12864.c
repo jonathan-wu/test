@@ -1,5 +1,8 @@
 #include"msp430f5438.h"
+#include"TimerA1.h"
 #include"delay.h"
+
+//用户可用函数：LCD12864_drawDot();LCD12864_drawLine();DisplayCgrom();
 
 /*12864应用指令*/
 #define CLEAR_SCREEN 0x01      //清屏指令：清屏且AC值为00H
@@ -254,6 +257,8 @@ void LCD12864_drawLine(char x0, char y0, char x1, char y1, char type)
     } 
 }
 
+//入口参数：addr，需要写的起始地址
+//          hz，汉字字符串的指针
 void DisplayCgrom(char addr,char *hz)
 {
   LCD12864_wrCmd(addr);

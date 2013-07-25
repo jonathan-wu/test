@@ -13,6 +13,12 @@ volatile unsigned int results[2][Num_of_Results];
 unsigned char DataReady;
 double dist1,dist2,dist3;
 
+//入口参数：aver1,aver2,分别为2个红外测距的转换值(0~4095)
+//出口参数：无
+//处理结果存放在dist1,dist2两个全局变量中
+//dist3用于调试
+//此函数暂时没有完成
+
 void GP2Y0A02_DistCompute(double aver1,double aver2)
 {
   double volt1,volt2;
@@ -51,6 +57,9 @@ void GP2Y0A02_DistCompute(double aver1,double aver2)
     dist3=841010014232.0*dao*dao*dao-1808548607.43*dao*dao+1319702.47663*dao-289.751141638; //参数还没调
     __no_operation();
 }
+
+//500次取值去掉最大最小各100个
+//需要加入卡尔曼滤波
 
 void GP2Y0A02_DataProcess()
 {
@@ -115,6 +124,9 @@ void GP2Y0A02_DataProcess()
   DataReady ++;
 }
 
+//作为调试参数使用
+//sum为500*2000即一百万次采样结果的总合
+//可将断电设置在sum=0;一行观察每次sum的变化
 void GP2Y0A02_Calibration()
 {
   static unsigned long long sum=0;

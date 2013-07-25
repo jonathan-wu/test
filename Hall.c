@@ -2,6 +2,8 @@
 
 unsigned int Hall_Result;
 
+//入口参数：无
+//出口参数: ADC12转换值(unsigned int 0~4095)
 unsigned int Hall_convert()
 {
   Hall_Result = 0;

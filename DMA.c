@@ -1,6 +1,7 @@
 #include"msp430f5438.h"
 
-unsigned int DMA_DST;
+//由于430DMA传送中CPU关断，所以DMA意义不大
+unsigned int DMA_DST;                       //传送目标变量
 void DMA_init()
 {
     // Setup DMA0

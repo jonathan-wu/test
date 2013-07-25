@@ -1,5 +1,6 @@
 #include"msp430f5438.h"
 #include"UCS.h"
+#include"TimerA1.h"
 #include"delay.h"
 
 volatile unsigned long risingTime,fallingTime;

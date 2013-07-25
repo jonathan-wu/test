@@ -2033,6 +2033,12 @@
     <name>$PROJ_DIR$\RTC.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\TimerA1.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\TimerA1.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\TimerA1_PWM.c</name>
   </file>
   <file>
