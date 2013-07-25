@@ -1,6 +1,9 @@
 #include"msp430f5438.h"
+#include"Global.h"
 
-//#define WDT_PWM_
+//WDT_PWM主要为舵机使用
+//如果使用WDT_PWM，一个最小WDT溢出周期为2ms/125=16us
+//一个PWM周期为2ms,占空比用0~125表示，0表示0%,125表示100%
 #ifdef WDT_PWM_
 #define WDT_CYCLE 125
   unsigned char WDT_cnt   = 0;
@@ -26,10 +29,16 @@ void WDT_init()
 }
 
 #ifdef WDT_PWM_
-void WDT_PWM1()
+void WDT_PWM_1(unsigned int n)
 {
-  WDT_duty1 = TimeBase/1000+64;
+  WDT_duty1 = n;
 }
+
+
+//void WDT_PWM_2(unsigned int n)
+//{
+//  WDT_duty2 = n;
+//}
 
 #pragma vector = WDT_VECTOR
 __interrupt void WDT_ISR()
@@ -39,6 +48,11 @@ __interrupt void WDT_ISR()
   {
     P8OUT &=~BIT6;
   }
+  
+//  if (WDT_cnt == WDT_duty2)
+//  {
+//    P8OUT &=~BIT6;
+//  }  
   //更多定义
   if (WDT_cnt == WDT_CYCLE)
   {

@@ -7,6 +7,8 @@ volatile unsigned long risingTime,fallingTime;
 volatile unsigned int  risingCap,fallingCap;
 volatile unsigned long sonicDist,sonicTime;
 
+//P8.6捕获模式
+//CCR1
 void UltraSonic_init()
 {
     P10DIR|= BIT2;
@@ -20,6 +22,7 @@ void UltraSonic_init()
     TA1CCTL1 |= CCIE;
 }
 
+//P10.2发送脉冲
 void UltraSonic_Tx()
 {
     P10OUT  |= BIT2;
