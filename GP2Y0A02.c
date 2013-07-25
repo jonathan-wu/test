@@ -1,4 +1,6 @@
 #include "msp430f5438.h"
+#include "Global.h"
+#ifdef GP2Y0A02_Used_
 /*
 需要和ADC12.c配合使用
 */
@@ -149,3 +151,4 @@ void GP2Y0A02_Calibration()
   }
   DataReady++;
 }
+#endif

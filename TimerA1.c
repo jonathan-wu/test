@@ -61,7 +61,7 @@ __interrupt void TA1ISR(void)
       break;
     }
 #endif    
-    
+/*步进电机程序*/    
 #ifdef StepMotor_Used_
     if (TimeBase % StepMotor_interval==0)
     {

@@ -1,4 +1,5 @@
 #include<msp430f5438.h>
+#include"Global.h"
 #include"GP2Y0A02.h"
 #include"Hall.h"
 
@@ -32,7 +33,9 @@ void ADC12_init()
 #pragma vector=ADC12_VECTOR
 __interrupt void ADC12ISR (void)
 {
+#ifdef GP2Y0A02_Used_
   static unsigned int index = 0;
+#endif
 
   switch(ADC12IV)
   {
@@ -40,9 +43,12 @@ __interrupt void ADC12ISR (void)
   case  2: break;                           // Vector  2:  ADC overflow
   case  4: break;                           // Vector  4:  ADC timing overflow
   case  6:                                  // Vector  6:  ADC12IFG0
+#ifdef GP2Y0A02_Used_
     results[0][index] = ADC12MEM0;             // Move results    
+#endif
     break;
   case  8:                                  // Vector  8:  ADC12IFG1
+#ifdef GP2Y0A02_Used_    
     results[1][index] = ADC12MEM1;             // Move results    
     index++;                                // Increment results index, modulo; Set Breakpoint1 here
     
@@ -56,6 +62,7 @@ __interrupt void ADC12ISR (void)
     {
       index = 0;
     }
+#endif    
     break;                           
   case 10:                                  // Vector 10:  ADC12IFG2
     Hall_Result = ADC12MEM2;
