@@ -28,7 +28,8 @@
 #include"UART.h"
 //#include"StepMotor.h"
 
-  int j,i=500,flag=1,k,nowtime;
+int j,i=500,flag=1,k=1,nowtime;
+
 int main( void )
 {
   WDT_init();
@@ -55,7 +56,7 @@ int main( void )
   
 //  UltraSonic_init();
 
-  UART_init(UCA0,9600);
+  UART_init(UCA1,115200);
   
   Motor_init();
   
@@ -82,27 +83,32 @@ int main( void )
 //  TimerA1_PWM_2(3000);
 
 //  while(StepMotor_set(5000,1,0));
-  
+
+  Motor_config(0,900,0,0);
+  while(1)
+  {}
   while(1)
   {
-
     nowtime = TimeBase;
-    if((nowtime % 12000 == 0)
+    if((nowtime % 1000 == 0)
        &&(k!=nowtime)) 
     {
       k=nowtime;
-      flag ^=1;
+      j=(TimeBase/1000)%12;
+      if(0<=j&&j<=5) i=500+j*100;
+      else if(6<=j&&j<=10) i=1500-j*100;
+      else 
+      {
+        i=0;
+        flag++;
+      }
+      if (flag)
+        Motor_config(0,i,0,0);
+      else Motor_config(0,-i,-0,-0);
+//      flag ^=1;
+
     }
-    j=(TimeBase/1000)%12;
-    if(0<=j&&j<=5) i=500+j*100;
-    else if(6<=j&&j<=10) i=1500-j*100;
-    else i=0;
-    if (flag)
-      Motor_config(0,i,0,0);
-    else Motor_config(0,-i,-0,-0);
-    
-    UART_sendstr(UCA0,(char *)&L_T);
-    
+
 //³¬Éù²¨²âÊÔ    
 /*    if (TimeBase %1000==0)
     {

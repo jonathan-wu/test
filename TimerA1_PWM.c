@@ -1,4 +1,6 @@
 #include "msp430f5438.h"
+#include "Global.h"
+#ifdef TimerA1_PWM_Used_
 
 void TimerA1_PWM_1(unsigned int n)
 {
@@ -29,3 +31,4 @@ void TimerA1_PWM_init()
     TimerA1_PWM_1(2000);
     TimerA1_PWM_2(2000);
 }
+#endif

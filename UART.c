@@ -110,9 +110,9 @@ char UCA1_putchar(unsigned char data)
 	_DINT();
 	if (A1_TXBUF_LEN == 0)
 	{
-		UCA0IE  |= UCTXIE;
-		if (!(UCA0STAT & UCBUSY))
-			UCA0IFG |= UCTXIFG;
+		UCA1IE  |= UCTXIE;
+		if (!(UCA1STAT & UCBUSY))
+			UCA1IFG |= UCTXIFG;
 	}
 	A1_TXBUF[A1_TXBUF_W++] = data;
 	if (A1_TXBUF_W == A1_TXBUF_SIZE)
@@ -143,11 +143,11 @@ __interrupt void UART1(void)
 	case 2:
 		if (A1_RXBUF_LEN == A1_RXBUF_SIZE)
 		{
-			UCA0IFG &= ~UCRXIFG;		//Clear RX interrupt flag
+			UCA1IFG &= ~UCRXIFG;		//Clear RX interrupt flag
 			A1_RXBUF_FIFO_FULL = 1;		//Set FIFO full
 			break;
 		}
-                A1_RXBUF[A1_RXBUF_W++] = UCA0RXBUF;	//Get data from UCA0RXBUF
+                A1_RXBUF[A1_RXBUF_W++] = UCA1RXBUF;	//Get data from UCA0RXBUF
                 if (A1_RXBUF_W == A1_RXBUF_SIZE)
                     A1_RXBUF_W = 0;
                 A1_RXBUF_LEN++;
@@ -156,11 +156,11 @@ __interrupt void UART1(void)
 		if (A1_TXBUF_LEN > 0)
 		{
 			A1_TXBUF_LEN--;
-			UCA0TXBUF = A1_TXBUF[A1_TXBUF_R++];	//Send data
+			UCA1TXBUF = A1_TXBUF[A1_TXBUF_R++];	//Send data
 			if (A1_TXBUF_R == A1_TXBUF_SIZE)
 				A1_TXBUF_R = 0;
 		}
-		else UCA0IE &= ~UCTXIE;				//Turn off transmit
+		else UCA1IE &= ~UCTXIE;				//Turn off transmit
 		break;
 	case 8:
 		break;
@@ -193,9 +193,9 @@ char UCA2_putchar(unsigned char data)
 	_DINT();
 	if (A2_TXBUF_LEN == 0)
 	{
-		UCA0IE  |= UCTXIE;
-		if (!(UCA0STAT & UCBUSY))
-			UCA0IFG |= UCTXIFG;
+		UCA2IE  |= UCTXIE;
+		if (!(UCA2STAT & UCBUSY))
+			UCA2IFG |= UCTXIFG;
 	}
 	A2_TXBUF[A2_TXBUF_W++] = data;
 	if (A2_TXBUF_W == A2_TXBUF_SIZE)
@@ -226,11 +226,11 @@ __interrupt void UART2(void)
 	case 2:
 		if (A2_RXBUF_LEN == A2_RXBUF_SIZE)
 		{
-			UCA0IFG &= ~UCRXIFG;		//Clear RX interrupt flag
+			UCA2IFG &= ~UCRXIFG;		//Clear RX interrupt flag
 			A2_RXBUF_FIFO_FULL = 1;		//Set FIFO full
 			break;
 		}
-                A2_RXBUF[A2_RXBUF_W++] = UCA0RXBUF;	//Get data from UCA0RXBUF
+                A2_RXBUF[A2_RXBUF_W++] = UCA2RXBUF;	//Get data from UCA0RXBUF
                 if (A2_RXBUF_W == A2_RXBUF_SIZE)
                     A2_RXBUF_W = 0;
                 A2_RXBUF_LEN++;
@@ -239,11 +239,11 @@ __interrupt void UART2(void)
 		if (A2_TXBUF_LEN > 0)
 		{
 			A2_TXBUF_LEN--;
-			UCA0TXBUF = A2_TXBUF[A2_TXBUF_R++];	//Send data
+			UCA2TXBUF = A2_TXBUF[A2_TXBUF_R++];	//Send data
 			if (A2_TXBUF_R == A2_TXBUF_SIZE)
 				A2_TXBUF_R = 0;
 		}
-		else UCA0IE &= ~UCTXIE;				//Turn off transmit
+		else UCA2IE &= ~UCTXIE;				//Turn off transmit
 		break;
 	case 8:
 		break;
@@ -276,9 +276,9 @@ char UCA3_putchar(unsigned char data)
 	_DINT();
 	if (A3_TXBUF_LEN == 0)
 	{
-		UCA0IE  |= UCTXIE;
-		if (!(UCA0STAT & UCBUSY))
-			UCA0IFG |= UCTXIFG;
+		UCA3IE  |= UCTXIE;
+		if (!(UCA3STAT & UCBUSY))
+			UCA3IFG |= UCTXIFG;
 	}
 	A3_TXBUF[A3_TXBUF_W++] = data;
 	if (A3_TXBUF_W == A3_TXBUF_SIZE)
@@ -309,11 +309,11 @@ __interrupt void UART3(void)
 	case 2:
 		if (A3_RXBUF_LEN == A3_RXBUF_SIZE)
 		{
-			UCA0IFG &= ~UCRXIFG;		//Clear RX interrupt flag
+			UCA3IFG &= ~UCRXIFG;		//Clear RX interrupt flag
 			A3_RXBUF_FIFO_FULL = 1;		//Set FIFO full
 			break;
 		}
-                A3_RXBUF[A3_RXBUF_W++] = UCA0RXBUF;	//Get data from UCA0RXBUF
+                A3_RXBUF[A3_RXBUF_W++] = UCA3RXBUF;	//Get data from UCA0RXBUF
                 if (A3_RXBUF_W == A3_RXBUF_SIZE)
                     A3_RXBUF_W = 0;
                 A3_RXBUF_LEN++;
@@ -322,11 +322,11 @@ __interrupt void UART3(void)
 		if (A3_TXBUF_LEN > 0)
 		{
 			A3_TXBUF_LEN--;
-			UCA0TXBUF = A3_TXBUF[A3_TXBUF_R++];	//Send data
+			UCA3TXBUF = A3_TXBUF[A3_TXBUF_R++];	//Send data
 			if (A3_TXBUF_R == A3_TXBUF_SIZE)
 				A3_TXBUF_R = 0;
 		}
-		else UCA0IE &= ~UCTXIE;				//Turn off transmit
+		else UCA3IE &= ~UCTXIE;				//Turn off transmit
 		break;
 	case 8:
 		break;
@@ -498,104 +498,106 @@ void UART_sendstr(unsigned char UCAx,char *str)
         default:break;
 	}
 }
-/*
-#pragma vector = USCI_A1_VECTOR
-__interrupt void UART1(void)
+
+void UART_sendint(unsigned char UCAx,unsigned int data)
 {
-	switch (UCA1IV)
-	{
-	case 0:
-		break;
-	case 2:
-		if (RXBUF_LEN == RXBUF_SIZE)
-		{
-			UCA0IFG &= ~UCRXIFG;		//Clear RX interrupt flag
-			RXBUF_FIFO_FULL = 1;		//Set FIFO full
-			break;
-		}
-	    RXBUF[RXBUF_W++] = UCA0RXBUF;	//Get data from UCA0RXBUF
-	    if (RXBUF_W == RXBUF_SIZE)
-	    	RXBUF_W = 0;
-	    RXBUF_LEN++;
-		break;
-	case 4:
-		if (TXBUF_LEN > 0)
-		{
-			TXBUF_LEN--;
-			UCA0TXBUF = TXBUF[TXBUF_R++];	//Send data
-			if (TXBUF_R == TXBUF_SIZE)
-				TXBUF_R = 0;
-		}
-		else UCA0IE &= ~UCTXIE;				//Turn off transmit
-		break;
-	case 8:
-		break;
-	}
+    unsigned char temp[5];
+    unsigned char length=0;
+    switch(UCAx)
+    {
+    case UCA0:
+        {
+            #ifdef UCA0_Used_
+            if (data == 0)
+              while(UCA0_putchar('0');
+            else
+            {
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA0_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    case UCA1:
+        {
+            #ifdef UCA1_Used_
+            if (data == 0)
+              while(UCA1_putchar('0'));
+            else
+            {
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA1_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    case UCA2:
+        {
+            #ifdef UCA2_Used_
+            if (data == 0)
+              while(UCA2_putchar('0');
+            else
+            {
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA2_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    case UCA3:
+        {
+            #ifdef UCA3_Used_
+            if (data == 0)
+              while(UCA3_putchar('0');
+            else
+            {
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA3_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    default:break;
+    }
 }
-#pragma vector = USCI_A2_VECTOR
-__interrupt void UART2(void)
-{
-	switch (UCA2IV)
-	{
-	case 0:
-		break;
-	case 2:
-		if (RXBUF_LEN == RXBUF_SIZE)
-		{
-			UCA0IFG &= ~UCRXIFG;		//Clear RX interrupt flag
-			RXBUF_FIFO_FULL = 1;		//Set FIFO full
-			break;
-		}
-	    RXBUF[RXBUF_W++] = UCA0RXBUF;	//Get data from UCA0RXBUF
-	    if (RXBUF_W == RXBUF_SIZE)
-	    	RXBUF_W = 0;
-	    RXBUF_LEN++;
-		break;
-	case 4:
-		if (TXBUF_LEN > 0)
-		{
-			TXBUF_LEN--;
-			UCA0TXBUF = TXBUF[TXBUF_R++];	//Send data
-			if (TXBUF_R == TXBUF_SIZE)
-				TXBUF_R = 0;
-		}
-		else UCA0IE &= ~UCTXIE;				//Turn off transmit
-		break;
-	case 8:
-		break;
-	}
-}
-#pragma vector = USCI_A3_VECTOR
-__interrupt void UART3(void)
-{
-	switch (UCA3IV)
-	{
-	case 0:
-		break;
-	case 2:
-		if (RXBUF_LEN == RXBUF_SIZE)
-		{
-			UCA0IFG &= ~UCRXIFG;		//Clear RX interrupt flag
-			RXBUF_FIFO_FULL = 1;		//Set FIFO full
-			break;
-		}
-	    RXBUF[RXBUF_W++] = UCA0RXBUF;	//Get data from UCA0RXBUF
-	    if (RXBUF_W == RXBUF_SIZE)
-	    	RXBUF_W = 0;
-	    RXBUF_LEN++;
-		break;
-	case 4:
-		if (TXBUF_LEN > 0)
-		{
-			TXBUF_LEN--;
-			UCA0TXBUF = TXBUF[TXBUF_R++];	//Send data
-			if (TXBUF_R == TXBUF_SIZE)
-				TXBUF_R = 0;
-		}
-		else UCA0IE &= ~UCTXIE;				//Turn off transmit
-		break;
-	case 8:
-		break;
-	}
-}
-*/
+

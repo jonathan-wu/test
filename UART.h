@@ -13,13 +13,14 @@
 #define A0_RXBUF_SIZE 64  //UCA0 FIFO大小
 #define A0_TXBUF_SIZE 64
 #define A1_RXBUF_SIZE 64  
-#define A1_TXBUF_SIZE 64
+#define A1_TXBUF_SIZE 256
 #define A2_RXBUF_SIZE 64  
 #define A2_TXBUF_SIZE 64
 #define A3_RXBUF_SIZE 64  
 #define A3_TXBUF_SIZE 64
 extern void UART_init(unsigned char UCAx,unsigned long int baud);//初始化UCAx，baud可选9600或115200
 extern void UART_sendstr(unsigned char UCAx,char *str);//使用UCAx发送字符串str
+extern void UART_sendint(unsigned char UCAx,unsigned int data);//使用UCAx发送unsigned int data
 #endif 
 #ifdef UCA0_Used_
 char UCA0_GET_RXBUFLEN(void);//获取RX的FIFO中字符长度
