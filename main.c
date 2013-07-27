@@ -84,9 +84,6 @@ int main( void )
 
 //  while(StepMotor_set(5000,1,0));
 
-  Motor_config(0,900,0,0);
-  while(1)
-  {}
   while(1)
   {
     nowtime = TimeBase;

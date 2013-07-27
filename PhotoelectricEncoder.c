@@ -13,8 +13,8 @@ void PhotoelectricEncoder_init()
     P4DIR &= ~(BIT1+ BIT2);
     P4SEL |=  BIT1+ BIT2;
     
-    TB0CCTL1 = CM_3+CCIS_0+CAP+SCS;                    // CCR1 capture mode P4.1
-    TB0CCTL2 = CM_3+CCIS_0+CAP+SCS;                    // CCR1 capture mode P4.2
+    TB0CCTL1 = CM_1+CCIS_0+CAP+SCS;                    // CCR1 capture mode P4.1
+    TB0CCTL2 = CM_1+CCIS_0+CAP+SCS;                    // CCR1 capture mode P4.2
     TB0CCTL1 |= CCIE;
     TB0CCTL2 |= CCIE;
 }
@@ -30,7 +30,9 @@ __interrupt void PhotoelectricEncoder_ISR()
       L_phase=TB0CCTL1 & CCI;
       L_before= L_now;
       L_now   = TB0CCR1;
-      L_T = (L_now-L_before)/100+L_interval*40;   //转一圈所需要的毫秒数
+      L_T = L_interval*40+((signed)L_now-(signed)L_before)/100;   //转一圈所需要的毫秒数
+      if ((L_T>1000) && (L_T<1200))
+        __no_operation();
 //      if (L_before_phase!=L_phase)
 //      {
         UART_sendint(UCA1, L_T);
@@ -47,6 +49,7 @@ __interrupt void PhotoelectricEncoder_ISR()
       L_interval=0;
       if (TB0CCTL1& COV)
         while(1);
+      
       if (flag == 5)
       {
         while(1);
