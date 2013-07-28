@@ -36,7 +36,7 @@ __interrupt void PhotoelectricEncoder_ISR()
       L_T =(L_T_prev)*(100-Filter)/100+(L_interval*20+((signed)L_now-(signed)L_before)/200)*Filter/100;   //转一圈所需要的毫秒数,带滤波
 
       L_T_prev  = L_T;
-      L_speed = (unsigned int)(60000/L_T);    //rpm
+      L_speed = (unsigned int)(60000/L_T);    //rpm,后期可*100
 
       if (L_dir)
         L_cnt--;

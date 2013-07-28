@@ -84,15 +84,18 @@ int main( void )
 
 //  while(StepMotor_set(5000,1,0));
 
+/*
   P4DIR |= BIT7;
   P4OUT &= ~BIT7;  
-  Motor_config(1000,1000,1000,1000);
-  while(TimeBase!=3000);
+  Motor_config(1000,1000,-1000,-1000);
+  while(TimeBase!=500);
   Motor_brake(0x0F);
   P4OUT |= BIT7;
   while(!(L_speed==0) || !(R_speed ==0));
   P4OUT &=~BIT7;
-
+*/
+  Motor_config(0,1000,0,1000);
+  
   while(1)
   {
     /*
