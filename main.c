@@ -56,7 +56,7 @@ int main( void )
   
 //  UltraSonic_init();
 
-  UART_init(UCA1,115200);
+  UART_init(UCA1,9600);
   
   Motor_init();
   
@@ -84,8 +84,18 @@ int main( void )
 
 //  while(StepMotor_set(5000,1,0));
 
+  P4DIR |= BIT7;
+  P4OUT &= ~BIT7;  
+  Motor_config(1000,1000,1000,1000);
+  while(TimeBase!=3000);
+  Motor_brake(0x0F);
+  P4OUT |= BIT7;
+  while(!(L_speed==0) || !(R_speed ==0));
+  P4OUT &=~BIT7;
+
   while(1)
   {
+    /*
     nowtime = TimeBase;
     if((nowtime % 1000 == 0)
        &&(k!=nowtime)) 
@@ -100,11 +110,11 @@ int main( void )
         flag++;
       }
       if (flag)
-        Motor_config(0,i,0,0);
-      else Motor_config(0,-i,-0,-0);
+        Motor_config(i,i,i,i);
+      else Motor_config(-i,-i,-i,-i);
 //      flag ^=1;
 
-    }
+    }*/
 
 //≥¨…˘≤®≤‚ ‘    
 /*    if (TimeBase %1000==0)

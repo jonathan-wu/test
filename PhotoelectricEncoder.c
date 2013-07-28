@@ -1,10 +1,15 @@
 #include"msp430f5438.h"
 #include"Global.h"
+#include"Motor.h"
 #include"UART.h"
 
 #ifdef PhotoelectricEncoder_Used_
-unsigned int L_before,L_now,L_T,L_interval;
-unsigned int R_before,R_now,R_T,R_interval;
+#define Filter 20
+
+unsigned int L_before,L_now,L_speed,L_interval;
+unsigned int R_before,R_now,R_speed,R_interval;
+unsigned long L_T,L_T_prev,R_T,R_T_prev;
+signed long L_cnt,R_cnt;
 
 extern int flag;
 
@@ -22,33 +27,28 @@ void PhotoelectricEncoder_init()
 #pragma vector = TIMER0_B1_VECTOR
 __interrupt void PhotoelectricEncoder_ISR()
 {
-  static unsigned char L_phase,L_before_phase=2;
   switch(TB0IV)
   {
     case  0: break;                          // No interrupt
     case  2:                                 // CCR1 used
-      L_phase=TB0CCTL1 & CCI;
       L_before= L_now;
       L_now   = TB0CCR1;
-      L_T = L_interval*40+((signed)L_now-(signed)L_before)/100;   //转一圈所需要的毫秒数
-      if ((L_T>1000) && (L_T<1200))
-        __no_operation();
-//      if (L_before_phase!=L_phase)
-//      {
-        UART_sendint(UCA1, L_T);
-        UART_sendstr(UCA1, ", ");
-//      }
-//      else
-//     {
-//        UART_sendint(UCA1, L_T/2);
-//        UART_sendstr(UCA1, ", ");
-//        UART_sendint(UCA1, L_T/2);
-//        UART_sendstr(UCA1, ", ");        
-//      }
-      L_before_phase=L_phase;
+      L_T =(L_T_prev)*(100-Filter)/100+(L_interval*20+((signed)L_now-(signed)L_before)/200)*Filter/100;   //转一圈所需要的毫秒数,带滤波
+
+      L_T_prev  = L_T;
+      L_speed = (unsigned int)(60000/L_T);    //rpm
+
+      if (L_dir)
+        L_cnt--;
+      else
+        L_cnt++;
+      
       L_interval=0;
-      if (TB0CCTL1& COV)
-        while(1);
+      if (TB0CCTL1 & COV)
+      {
+        UART_sendstr(UCA1,"OVERFLOW!");
+        TB0CCTL1 &= ~COV;
+      }
       
       if (flag == 5)
       {
@@ -58,8 +58,22 @@ __interrupt void PhotoelectricEncoder_ISR()
     case  4:                                 // CCR2 used
       R_before= R_now;
       R_now   = TB0CCR2;
-      R_T = (R_now-R_before)/100+R_interval;   //转一圈所需要的毫秒数
-      R_interval=0;      
+      R_T =(R_T_prev)*(100-Filter)/100+(R_interval*20+((signed)R_now-(signed)R_before)/200)*Filter/100;   //转一圈所需要的毫秒数,带滤波
+
+      R_T_prev  = R_T;
+      R_speed = (unsigned int)(60000/R_T);
+
+      if (R_dir)
+        R_cnt--;
+      else
+        R_cnt++;
+      
+      R_interval=0;
+      if (TB0CCTL2 & COV)
+      {
+        UART_sendstr(UCA1,"OVERFLOW!");
+        TB0CCTL2 &= ~COV;
+      }
       break;
     case  6: break;                          // reserved
     case  8: break;                          // reserved
@@ -75,11 +89,17 @@ __interrupt void PhotoelectricEncoder_ISR()
 __interrupt void TimerB0_ISR()
 {
   L_interval++;
-  if (L_interval  > 200)
-    L_T=0;
+  if (L_interval  > 100)
+  {
+    L_T=65535;
+    L_speed=0;
+  }
   R_interval++;
-  if (R_interval  > 200)
-    R_T=0;  
+  if (R_interval  > 100)
+  {
+    R_T=65535;
+    R_speed=0;
+  }
 }
 
 #endif

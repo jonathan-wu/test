@@ -13,7 +13,7 @@
 #define A0_RXBUF_SIZE 64  //UCA0 FIFO¥Û–°
 #define A0_TXBUF_SIZE 64
 #define A1_RXBUF_SIZE 64  
-#define A1_TXBUF_SIZE 256
+#define A1_TXBUF_SIZE 64
 #define A2_RXBUF_SIZE 64  
 #define A2_TXBUF_SIZE 64
 #define A3_RXBUF_SIZE 64  

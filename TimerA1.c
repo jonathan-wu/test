@@ -2,6 +2,9 @@
 #include"Global.h"
 #include"DigtalTube.h"
 #include"StepMotor.h"
+//调参数用
+#include"PhotoelectricEncoder.h"
+#include"UART.h"
 
 extern unsigned int CountDown;
 volatile unsigned long TimeBase = 0;
@@ -29,6 +32,15 @@ __interrupt void TA1ISR(void)
   {
       CountDown --;
   }
+  
+  //下面一段调参数用,之后需要删除
+  
+  if(TimeBase % 10 == 0)
+  {
+    UART_sendint(UCA1, L_speed);
+    UART_sendstr(UCA1, ", ");
+  }
+
   
 /*数码管扫描程序*/  
 #ifdef DigtalTube_Used_
