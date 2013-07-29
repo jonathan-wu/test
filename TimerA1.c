@@ -34,10 +34,10 @@ __interrupt void TA1ISR(void)
   }
   
   //下面一段调参数用,之后需要删除
-  
+  extern int tx;
   if(TimeBase % 10 == 0)
   {
-    UART_sendint(UCA1, (unsigned int)(L_cnt-R_cnt));
+    UART_sendint(UCA1, (unsigned int)(L_speed));
     UART_sendstr(UCA1, ", ");
   }
 

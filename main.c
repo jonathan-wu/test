@@ -29,7 +29,7 @@
 //#include"StepMotor.h"
 #include"PID.h"
 
-int j,i=500,flag=1,k=1,nowtime;
+int j,i=500,flag=1,k=1,nowtime,tx;
 PID_struct Motor_L,Motor_R;
 
 int main( void )
@@ -122,6 +122,7 @@ int main( void )
     if((!PID_compute(&Motor_L))||(!PID_compute(&Motor_R)))
     {
       Motor_config(Motor_L.myOutput,Motor_L.myOutput,Motor_R.myOutput,Motor_R.myOutput);
+      tx=Motor_L.myOutput;
     }
     /*
     nowtime = TimeBase;
