@@ -37,7 +37,7 @@ __interrupt void TA1ISR(void)
   
   if(TimeBase % 10 == 0)
   {
-    UART_sendint(UCA1, L_speed);
+    UART_sendint(UCA1, (unsigned int)(L_cnt-R_cnt));
     UART_sendstr(UCA1, ", ");
   }
 
