@@ -6,10 +6,10 @@
 #ifdef PhotoelectricEncoder_Used_
 #define Filter 20
 
-unsigned int L_before,L_now,L_speed,L_interval;
-unsigned int R_before,R_now,R_speed,R_interval;
+unsigned int L_before,L_now,L_interval;
+unsigned int R_before,R_now,R_interval;
 unsigned long L_T,L_T_prev,R_T,R_T_prev;
-signed long L_cnt,R_cnt;
+signed long L_cnt,R_cnt,L_speed,R_speed;
 
 extern int flag;
 
@@ -36,10 +36,13 @@ __interrupt void PhotoelectricEncoder_ISR()
       L_T =(L_T_prev)*(100-Filter)/100+(L_interval*20+((signed)L_now-(signed)L_before)/200)*Filter/100;   //转一圈所需要的毫秒数,带滤波
 
       L_T_prev  = L_T;
-      L_speed = (unsigned int)(60000/L_T);    //rpm,后期可*100
+      L_speed = (signed long)(60000/L_T);    //rpm,后期可*100以更精确
 
       if (L_dir)
+      {
         L_cnt--;
+        L_speed = -L_speed;
+      }
       else
         L_cnt++;
       

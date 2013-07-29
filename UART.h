@@ -21,6 +21,7 @@
 extern void UART_init(unsigned char UCAx,unsigned long int baud);//初始化UCAx，baud可选9600或115200
 extern void UART_sendstr(unsigned char UCAx,char *str);//使用UCAx发送字符串str
 extern void UART_sendint(unsigned char UCAx,unsigned int data);//使用UCAx发送unsigned int data
+//extern void UART_sendlong(unsigned char UCAx,signed long data);//使用UCAx发送signed long data
 #endif 
 #ifdef UCA0_Used_
 char UCA0_GET_RXBUFLEN(void);//获取RX的FIFO中字符长度

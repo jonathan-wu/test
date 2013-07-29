@@ -601,3 +601,129 @@ void UART_sendint(unsigned char UCAx,unsigned int data)
     }
 }
 
+                    
+//打负号有问题，不要使用
+/*                    
+void UART_sendlong(unsigned char UCAx,signed long data)
+{
+    unsigned char temp[16];
+    unsigned char length=0;
+    switch(UCAx)
+    {
+    case UCA0:
+        {
+            #ifdef UCA0_Used_
+            if (data == 0)
+              while(UCA0_putchar('0'));
+            else
+            {
+              if (data<0)
+              {
+                while(UCA0_putchar('-'));
+                data=-data;
+              }
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA0_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    case UCA1:
+        {
+            #ifdef UCA1_Used_
+            if (data == 0)
+              while(UCA1_putchar('0'));
+            else
+            {
+              if (data<0)
+              {
+                UART_sendstr(UCA1,"-");              
+                data=-data;
+              }
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA1_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    case UCA2:
+        {
+            #ifdef UCA2_Used_
+            if (data == 0)
+              while(UCA2_putchar('0'));
+            else
+            {
+              if (data<0)
+              {
+                while(UCA2_putchar('-'));              
+                data=-data;
+              }                
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA2_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    case UCA3:
+        {
+            #ifdef UCA3_Used_
+            if (data == 0)
+              while(UCA3_putchar('0'));
+            else
+            {
+              if (data<0)
+              {
+                while(UCA3_putchar('-'));              
+                data=-data;
+              }                
+              while(data!=0)
+              {
+                temp[length++]=data%10;
+                data/=10;
+              }
+              for(;length!=0;)
+              {
+                length--;
+                while(UCA3_putchar('0'+temp[length]));
+              }
+            }
+            #else
+            break;
+            #endif
+        }
+         break;
+    default:break;
+    }
+}
+
+*/

@@ -27,8 +27,10 @@
 
 #include"UART.h"
 //#include"StepMotor.h"
+#include"PID.h"
 
 int j,i=500,flag=1,k=1,nowtime;
+PID_struct Motor_L,Motor_R;
 
 int main( void )
 {
@@ -94,10 +96,30 @@ int main( void )
   while(!(L_speed==0) || !(R_speed ==0));
   P4OUT &=~BIT7;
 */
-  Motor_config(0,1000,0,1000);
+  
+  Motor_L.myOutput = 0;
+  Motor_L.myInput = &L_speed;
+  Motor_L.mySetpoint = 100;
+  Motor_L.inAuto = 1;
+  PID_setOutputLimits(&Motor_L, 0, (signed long)1000*Accuracy);
+  Motor_L.SampleTime = 10;
+  PID_setControllerDirection(&Motor_L, 0);
+  PID_setTunings(&Motor_L, 2100, 3800, 70);//kp2100,ki4000
+  if (TimeBase>Motor_L.SampleTime)
+    Motor_L.lastTime = TimeBase-Motor_L.SampleTime;
+  else
+    Motor_L.lastTime = 0;
+  
+  Motor_R=Motor_L;
+  Motor_R.myInput = &R_speed;
+  
+  Motor_config(0,600,600,0);
+  while(TimeBase!=500);
   
   while(1)
   {
+    if((!PID_compute(&Motor_L))||(!PID_compute(&Motor_L)))
+      Motor_config(Motor_L.myOutput,Motor_L.myOutput,Motor_R.myOutput,Motor_R.myOutput);
     /*
     nowtime = TimeBase;
     if((nowtime % 1000 == 0)

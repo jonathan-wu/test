@@ -2024,6 +2024,12 @@
     <name>$PROJ_DIR$\PhotoelectricEncoder.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\PID.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\PID.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\PWM.c</name>
   </file>
   <file>
