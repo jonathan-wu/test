@@ -99,7 +99,7 @@ int main( void )
   
   Motor_L.myOutput = 0;
   Motor_L.myInput = &L_speed;
-  Motor_L.mySetpoint = 100;
+  Motor_L.mySetpoint = 200;
   Motor_L.inAuto = 1;
   PID_setOutputLimits(&Motor_L, 0, (signed long)1000*Accuracy);
   Motor_L.SampleTime = 10;
@@ -111,15 +111,18 @@ int main( void )
     Motor_L.lastTime = 0;
   
   Motor_R=Motor_L;
+  Motor_R.mySetpoint = 201;
   Motor_R.myInput = &R_speed;
   
-  Motor_config(0,600,600,0);
+  Motor_config(600,600,600,600);
   while(TimeBase!=500);
   
   while(1)
   {
-    if((!PID_compute(&Motor_L))||(!PID_compute(&Motor_L)))
+    if((!PID_compute(&Motor_L))||(!PID_compute(&Motor_R)))
+    {
       Motor_config(Motor_L.myOutput,Motor_L.myOutput,Motor_R.myOutput,Motor_R.myOutput);
+    }
     /*
     nowtime = TimeBase;
     if((nowtime % 1000 == 0)

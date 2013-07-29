@@ -67,7 +67,10 @@ __interrupt void PhotoelectricEncoder_ISR()
       R_speed = (unsigned int)(60000/R_T);
 
       if (R_dir)
+      {
         R_cnt--;
+        R_speed = -R_speed;
+      }
       else
         R_cnt++;
       
