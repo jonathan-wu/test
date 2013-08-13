@@ -58,11 +58,11 @@
         </option>
         <option>
           <name>RTConfigPath</name>
-          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430xsfn.h</state>
+          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430fn.h</state>
         </option>
         <option>
           <name>RTLibraryPath</name>
-          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430xsfn.r43</state>
+          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430fn.r43</state>
         </option>
         <option>
           <name>Input variant</name>
@@ -105,11 +105,11 @@
         </option>
         <option>
           <name>GStackSize2</name>
-          <state>160</state>
+          <state>80</state>
         </option>
         <option>
           <name>GHeapSize2</name>
-          <state>160</state>
+          <state>80</state>
         </option>
         <option>
           <name>RadioDataModelType</name>
@@ -345,7 +345,7 @@
         </option>
         <option>
           <name>CCOptLevel</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCOptStrategy</name>
@@ -354,7 +354,7 @@
         </option>
         <option>
           <name>CCOptLevelSlave</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CInput</name>
@@ -648,7 +648,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>test.d43</state>
+          <state>HMC5883.d43</state>
         </option>
         <option>
           <name>OutputFormat</name>
@@ -714,7 +714,7 @@
         </option>
         <option>
           <name>XclFile</name>
-          <state>$TOOLKIT_DIR$\CONFIG\lnk430F5438.xcl</state>
+          <state>$TOOLKIT_DIR$\CONFIG\lnk430F149.xcl</state>
         </option>
         <option>
           <name>XclFileSlave</name>
@@ -830,7 +830,7 @@
         </option>
         <option>
           <name>AllowExtraOutput</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>GenerateExtraOutput</name>
@@ -842,7 +842,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>test.a43</state>
+          <state>HMC5883.a43</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -868,7 +868,7 @@
         </option>
         <option>
           <name>BufferedTermOutput</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>XExtraOptionsCheck</name>
@@ -1949,58 +1949,10 @@
     </settings>
   </configuration>
   <file>
-    <name>$PROJ_DIR$\adc12.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\adc12.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\delay.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\delay.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\DHT11.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\DigtalTube.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\DigtalTube.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\DMA.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\DMA.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\Global.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\GP2Y0A02.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\GP2Y0A02.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\Hall.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\Hall.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\HMC5883.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\HMC5883.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\I2C.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\I2C.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\IIC.c</name>
@@ -2009,109 +1961,13 @@
     <name>$PROJ_DIR$\IIC.h</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\LCD12864.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\LCD12864.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\main.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\Motor.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\Motor.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\MPY.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\MPY.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\PhotoelectricEncoder.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\PhotoelectricEncoder.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\PID.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\PID.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\PWM.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\PWM.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\RotaryEncoder.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\RotaryEncoder.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\RTC.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\RTC.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\StepMotor.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\StepMotor.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\TimerA1.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\TimerA1.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\TimerA1_PWM.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\TimerA1_PWM.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\TimerB0.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\TimerB0.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\Traction.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\Traction.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\UART.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\UART.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\UCS.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\UCS.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\UltraSonic.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\UltraSonic.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\WDT.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\WDT.h</name>
   </file>
 </project>
 

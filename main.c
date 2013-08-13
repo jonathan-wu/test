@@ -17,17 +17,18 @@
 //#include"DHT11.h"
 //#include"TimerA1_PWM.h"
 //#include"GP2Y0A02.h"
-#include"UltraSonic.h"
+//#include"UltraSonic.h"
 //#include"Hall.h"
 
 #include"Motor.h"
 
-#include"PhotoelectricEncoder.h"
+//#include"PhotoelectricEncoder.h"
 //#include"RotaryEncoder.h"
 //#include"Traction.h"
 
 //#include"UART.h"
 //#include"StepMotor.h"
+#include"HMC5883.h"
 #include"PID.h"
 
 #define LEAST 550
@@ -36,6 +37,8 @@ volatile unsigned char distState;
 int j,i=500,flag=1,k=1,tx;
 unsigned long xianshi,nowTime,lastDist=0xFFFF;
 PID_struct Motor_L,Motor_R;
+int dirX,dirY,dirZ;
+double theta;
 
 int main( void )
 {
@@ -73,11 +76,16 @@ int main( void )
   
 //  StepMotor_init();
   
+  HMC5883_init();
+  
+//扫描版避障
+  /*  
   P1DIR &=~BIT4;
   P1DIR &=~BIT5;
   P1DIR &=~BIT6;
   P1DIR &=~BIT7;
-  
+  */
+//中断版避障  
   /*
   P1IES |= BIT4;
   P1IES |= BIT5;
@@ -140,17 +148,28 @@ int main( void )
   while(TimeBase!=500);
 */
      
-  Motor_config(700,700,700,700);  
+//  Motor_config(700,700,700,700);  
   
   while(1)
   {
     
-//避障(while循环最小10ms)    
-/*    
+    
       if (nowTime != TimeBase)
       {
-        nowTime = TimeBase;
-        
+        nowTime = TimeBase;     //每一毫秒运行一次
+       
+        if ((nowTime % 100 == 0)&&(nowTime > 500))
+        {
+          //HMC5883_init();
+          dirX=HMC5883_Get_x();
+          dirY=HMC5883_Get_y();
+          dirZ=HMC5883_Get_z();
+          theta=(double)dirY/(double)dirX;
+          _NOP();
+        }
+
+//避障(while循环最小10ms)    
+/*            
         if ((nowTime % 20 ==0)&&(!(distState & BIT0)))
         {
           distState = ~P1IN;
@@ -182,8 +201,8 @@ int main( void )
           }
           else
             distState &=~BIT0;
-        }        
-      }*/
+        }*/
+      }
 
 //PID
     /*
@@ -232,5 +251,6 @@ int main( void )
 //      GP2Y0A02_DataProcess();
 //PWM
 //    WDT_PWM1();
+
   }
 }

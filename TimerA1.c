@@ -34,13 +34,14 @@ __interrupt void TA1ISR(void)
   }
   
   //下面一段调参数用,之后需要删除
+#ifdef PhotoelectricEncoder_Used_  
   extern int tx;
   if(TimeBase % 10 == 0)
   {
     UART_sendint(UCA1, (unsigned int)(L_speed));
     UART_sendstr(UCA1, ", ");
   }
-
+#endif
   
 /*数码管扫描程序*/  
 #ifdef DigtalTube_Used_
