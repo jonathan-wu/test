@@ -17,7 +17,7 @@
 //#include"DHT11.h"
 //#include"TimerA1_PWM.h"
 //#include"GP2Y0A02.h"
-//#include"UltraSonic.h"
+#include"UltraSonic.h"
 //#include"Hall.h"
 
 #include"Motor.h"
@@ -26,14 +26,15 @@
 //#include"RotaryEncoder.h"
 //#include"Traction.h"
 
-#include"UART.h"
+//#include"UART.h"
 //#include"StepMotor.h"
 #include"PID.h"
 
 #define LEAST 550
 signed char turn;
-int j,i=500,flag=1,k=1,nowtime,tx;
-unsigned long xianshi;
+volatile unsigned char distState;
+int j,i=500,flag=1,k=1,tx;
+unsigned long xianshi,nowTime,lastDist=0xFFFF;
 PID_struct Motor_L,Motor_R;
 
 int main( void )
@@ -60,9 +61,9 @@ int main( void )
   
 //  TimerA1_PWM_init();
   
-//  UltraSonic_init();
+  UltraSonic_init();
 
-  UART_init(UCA1,9600);
+//  UART_init(UCA1,9600);
   
   Motor_init();
   
@@ -71,6 +72,20 @@ int main( void )
 //  RotaryEncoder_init();
   
 //  StepMotor_init();
+  
+  P1DIR &=~BIT4;
+  P1DIR &=~BIT5;
+  P1DIR &=~BIT6;
+  P1DIR &=~BIT7;
+  
+  /*
+  P1IES |= BIT4;
+  P1IES |= BIT5;
+  P1IES |= BIT6;
+  P1IES |= BIT7;
+  P1IFG=0;
+  P1IE |=BIT4+BIT5+BIT6+BIT7;  
+  */
   
   _EINT();
 
@@ -124,11 +139,51 @@ int main( void )
   Motor_config(600,600,600,600);
   while(TimeBase!=500);
 */
-      
+     
+  Motor_config(700,700,700,700);  
   
   while(1)
   {
-
+    
+//±‹’œ(while—≠ª∑◊Ó–°10ms)    
+/*    
+      if (nowTime != TimeBase)
+      {
+        nowTime = TimeBase;
+        
+        if ((nowTime % 20 ==0)&&(!(distState & BIT0)))
+        {
+          distState = ~P1IN;
+          distState &= 0xF0;
+          if (distState | 0x00)
+          {
+            if ((distState & 0x10)&&(distState & 0x40))
+              Motor_config(-500,-500,700,700);
+            else if ((distState & 0x40)&&(distState & 0x80))            
+              Motor_config(0,0,700,700);
+            else if (distState & 0x40)
+              Motor_config(-700,-700,700,700);
+            else if (distState & 0x80)
+              Motor_config(700,700,700,700);
+//            else Motor_config(0,0,0,0);
+          }
+          else
+            Motor_config(850,850,475,475);
+        }
+        
+        if (nowTime % 50 == 0)
+        {
+          lastDist = sonicDist;
+          UltraSonic_Tx();
+          if (lastDist < 50)
+          {
+            Motor_config(-700,-700,700,700);
+            distState |= BIT0;
+          }
+          else
+            distState &=~BIT0;
+        }        
+      }*/
 
 //PID
     /*

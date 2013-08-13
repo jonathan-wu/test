@@ -11,8 +11,8 @@ volatile unsigned long sonicDist,sonicTime;
 //CCR1
 void UltraSonic_init()
 {
-    P10DIR|= BIT2;
-    P10OUT&=~BIT2;
+    P8DIR|= BIT5;
+    P8OUT&=~BIT5;
       
     P8DIR &=~BIT6;           // P8.6 input
     P8SEL |= BIT6;	     // P8.6 options select
@@ -25,9 +25,9 @@ void UltraSonic_init()
 //P10.2·¢ËÍÂö³å
 void UltraSonic_Tx()
 {
-    P10OUT  |= BIT2;
+    P8OUT  |= BIT5;
     delay_us(10);
-    P10OUT  &=~BIT2;
+    P8OUT  &=~BIT5;
 }
 
 // Timer_A3 Interrupt Vector (TAIV) handler

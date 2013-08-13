@@ -16,9 +16,9 @@ void WDT_init()
   WDTCTL = WDTPW + WDTSSEL__SMCLK + WDTTMSEL + WDTIS_7;
   SFRIE1  |= WDTIE;
   
-  P8DIR |= BIT6;
-  P8OUT |= BIT6;
-  P8DS  |= BIT6;
+  P8DIR |= BIT7;
+  P8OUT |= BIT7;
+  P8DS  |= BIT7;
   
   //更多PWM口定义...
   
@@ -46,7 +46,7 @@ __interrupt void WDT_ISR()
   WDT_cnt++;
   if (WDT_cnt == WDT_duty1)
   {
-    P8OUT &=~BIT6;
+    P8OUT &=~BIT7;
   }
   
 //  if (WDT_cnt == WDT_duty2)
@@ -57,7 +57,7 @@ __interrupt void WDT_ISR()
   if (WDT_cnt == WDT_CYCLE)
   {
     WDT_cnt =   0;
-    P8OUT   |=  BIT6;
+    P8OUT   |=  BIT7;
   }
 }
 #endif
