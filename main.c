@@ -24,12 +24,16 @@
 
 #include"PhotoelectricEncoder.h"
 //#include"RotaryEncoder.h"
+//#include"Traction.h"
 
 #include"UART.h"
 //#include"StepMotor.h"
 #include"PID.h"
 
+#define LEAST 550
+signed char turn;
 int j,i=500,flag=1,k=1,nowtime,tx;
+unsigned long xianshi;
 PID_struct Motor_L,Motor_R;
 
 int main( void )
@@ -38,7 +42,7 @@ int main( void )
   
   UCS_init();
   
-  TimerA1_init();    
+  TimerA1_init();
   
   TimerB0_init();
   
@@ -86,6 +90,7 @@ int main( void )
 
 //  while(StepMotor_set(5000,1,0));
 
+//刹车测试
 /*
   P4DIR |= BIT7;
   P4OUT &= ~BIT7;  
@@ -96,7 +101,9 @@ int main( void )
   while(!(L_speed==0) || !(R_speed ==0));
   P4OUT &=~BIT7;
 */
-  
+
+//PID init
+/*  
   Motor_L.myOutput = 0;
   Motor_L.myInput = &L_speed;
   Motor_L.mySetpoint = 200;
@@ -116,14 +123,25 @@ int main( void )
   
   Motor_config(600,600,600,600);
   while(TimeBase!=500);
+*/
+      
   
   while(1)
   {
+
+
+//PID
+    /*
     if((!PID_compute(&Motor_L))||(!PID_compute(&Motor_R)))
     {
       Motor_config(Motor_L.myOutput,Motor_L.myOutput,Motor_R.myOutput,Motor_R.myOutput);
       tx=Motor_L.myOutput;
     }
+    */
+//PID
+    
+//加减速、正反
+
     /*
     nowtime = TimeBase;
     if((nowtime % 1000 == 0)

@@ -2072,6 +2072,12 @@
     <name>$PROJ_DIR$\TimerB0.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\Traction.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\Traction.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\UART.c</name>
   </file>
   <file>

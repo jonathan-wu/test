@@ -11,4 +11,5 @@
 //#define UCA2_Used_
 //#define UCA3_Used_
 //#define TimerA1_PWM_Used_
+//#define Traction_Used_
 #endif

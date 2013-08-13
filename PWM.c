@@ -1,16 +1,16 @@
 #include "msp430x54x.h"
 #include "PWM.h"
 //初始化PWM
-//P1.2|--> PWM_1
-//P1.3|--> PWM_2
-//P1.4|--> PWM_3
-//P1.5|--> PWM_4
+//P8.1|--> PWM_1
+//P8.2|--> PWM_2
+//P8.3|--> PWM_3
+//P8.4|--> PWM_4
 //默认占空比50%
 //SMCLK=XT2/4=4MHz,频率4KHz
 void PWM_init(void)
 {
-	P1DIR |= BIT2+BIT3+BIT4+BIT5;           // P2.2 and P2.3 output
-	P1SEL |= BIT2+BIT3+BIT4+BIT5;			// P1.2 and P2.3 options select
+	P8DIR |= BIT1+BIT2+BIT3+BIT4;           // P2.2 and P2.3 output
+	P8SEL |= BIT1+BIT2+BIT3+BIT4;			// P1.2 and P2.3 options select
 	TA0CCR0 = 1000-1;						// PWM Period
 	TA0CCTL1 = OUTMOD_7;                    // CCR1 reset/set
 	TA0CCTL2 = OUTMOD_7;                    // CCR2 reset/set
