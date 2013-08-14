@@ -1,4 +1,5 @@
 #include"msp430f5438.h"
+#include"math.h"
 
 #include"Global.h"
 
@@ -26,7 +27,7 @@
 //#include"RotaryEncoder.h"
 //#include"Traction.h"
 
-//#include"UART.h"
+#include"UART.h"
 //#include"StepMotor.h"
 #include"HMC5883.h"
 #include"PID.h"
@@ -35,10 +36,11 @@
 signed char turn;
 volatile unsigned char distState;
 int j,i=500,flag=1,k=1,tx;
-unsigned long xianshi,nowTime,lastDist=0xFFFF;
+unsigned long xianshi,nowTime,lastDist=0xFFFF,startTime;
 PID_struct Motor_L,Motor_R;
-int dirX,dirY,dirZ;
+signed int dirX,dirY,dirZ;
 double theta;
+unsigned char command;
 
 int main( void )
 {
@@ -64,13 +66,13 @@ int main( void )
   
 //  TimerA1_PWM_init();
   
-  UltraSonic_init();
+//  UltraSonic_init();
 
-//  UART_init(UCA1,9600);
+  UART_init(UCA1,9600);
   
   Motor_init();
   
-  PhotoelectricEncoder_init();
+//  PhotoelectricEncoder_init();
   
 //  RotaryEncoder_init();
   
@@ -147,8 +149,10 @@ int main( void )
   Motor_config(600,600,600,600);
   while(TimeBase!=500);
 */
-     
-//  Motor_config(700,700,700,700);  
+  while(UCA1_GET_CHAR(&command));
+  startTime = TimeBase;
+  Motor_config(-700,-700,700,700);
+  
   
   while(1)
   {
@@ -158,14 +162,36 @@ int main( void )
       {
         nowTime = TimeBase;     //每一毫秒运行一次
        
-        if ((nowTime % 100 == 0)&&(nowTime > 500))
+        if ((nowTime % 10 == 0)&&(nowTime > 50)&&(nowTime < startTime+10000))
         {
-          //HMC5883_init();
-          dirX=HMC5883_Get_x();
-          dirY=HMC5883_Get_y();
-          dirZ=HMC5883_Get_z();
-          theta=(double)dirY/(double)dirX;
+          dirX=(HMC5883_Get_x()-141)*100/78;
+          dirY=HMC5883_Get_y()-0;//没有使用
+          dirZ=HMC5883_Get_z()-1319;
+          if (dirX!=0)
+          {
+            theta=atan((double)dirZ/(double)dirX);
+            if (dirX<0)
+              theta+=3.141;
+            else if (dirZ<0)
+              theta+=6.283;
+          }
+          else
+          {
+            if (dirZ>0)
+              theta=1.570;
+            else
+              theta=4.712;
+          }
+          UART_sendint(UCA1, (unsigned)(theta*1000+4096));
+          UART_sendstr(UCA1, " ");
           _NOP();
+        }
+        else if (nowTime > 10000+startTime)
+        {
+          Motor_config(0,0,0,0);
+          while(UCA1_GET_CHAR(&command));
+          startTime = TimeBase;
+          Motor_config(-700,-700,700,700);
         }
 
 //避障(while循环最小10ms)    

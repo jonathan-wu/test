@@ -6,7 +6,7 @@ void HMC5883_init(void)
 {
   IIC_init();
   IIC_write(0x00,0x78);
-  IIC_write(0x01,0x20);
+  IIC_write(0x01,0x40);
   IIC_write(0x02,0x00);
 }
 void Multiple_read_HMC5883(unsigned char *BUF)
