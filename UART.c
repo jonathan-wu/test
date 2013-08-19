@@ -509,7 +509,7 @@ void UART_sendint(unsigned char UCAx,unsigned int data)
         {
             #ifdef UCA0_Used_
             if (data == 0)
-              while(UCA0_putchar('0');
+              while(UCA0_putchar('0'));
             else
             {
               while(data!=0)
@@ -555,7 +555,7 @@ void UART_sendint(unsigned char UCAx,unsigned int data)
         {
             #ifdef UCA2_Used_
             if (data == 0)
-              while(UCA2_putchar('0');
+              while(UCA2_putchar('0'));
             else
             {
               while(data!=0)
@@ -578,7 +578,7 @@ void UART_sendint(unsigned char UCAx,unsigned int data)
         {
             #ifdef UCA3_Used_
             if (data == 0)
-              while(UCA3_putchar('0');
+              while(UCA3_putchar('0'));
             else
             {
               while(data!=0)

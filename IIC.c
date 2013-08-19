@@ -3,8 +3,8 @@
 #include "IIC.h"
 void IIC_init(void)
 {
-  P3DIR |= BIT0+BIT1;
-  P3OUT &=~(BIT0+BIT1);
+  scl_OUT;
+  DIR_OUT;
   scl_1;
   delay_us(5);
   sda_1;
@@ -84,17 +84,7 @@ void IIC_ack(void)
 	scl_0;
 	delay_us(5);
 }
-void IIC_sendack(unsigned char ack)
-{
-  if(ack) sda_1;
-  else sda_0;
-//    SDA = ack;                  //写应答信号
-  scl_1;                    //拉高时钟线
-  delay_us(5);                 //延时
-  scl_0;                    //拉低时钟线
-  delay_us(5);                 //延时
-}
-unsigned char IIC_read(unsigned char address)
+unsigned char IIC_read(unsigned char Address,unsigned char address)
 {
 	unsigned char i;
 	IIC_start();
@@ -109,7 +99,7 @@ unsigned char IIC_read(unsigned char address)
 	IIC_stop();
 	return(i);
 }
-void IIC_write(unsigned char address, unsigned char info)
+void IIC_write(unsigned char Address,unsigned char address, unsigned char info)
 {
 	IIC_start();
 	IIC_writex(Address);

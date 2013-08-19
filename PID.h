@@ -25,6 +25,7 @@ typedef struct
     
     unsigned int SampleTime;
     signed long outMin, outMax;
+
     unsigned char inAuto;
 }PID_struct;
 

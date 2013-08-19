@@ -1,8 +1,7 @@
 #include"msp430f5438.h"
-#include"math.h"
-
 #include"Global.h"
 
+#include "msp430_math.h"
 #include"WDT.h"
 #include"UCS.h"
 #include"TimerA1.h"
@@ -29,7 +28,8 @@
 
 #include"UART.h"
 //#include"StepMotor.h"
-#include"HMC5883.h"
+//#include"HMC5883.h"
+#include"L3G4200.h"
 #include"PID.h"
 
 #define LEAST 550
@@ -37,10 +37,48 @@ signed char turn;
 volatile unsigned char distState;
 int j,i=500,flag=1,k=1,tx;
 unsigned long xianshi,nowTime,lastDist=0xFFFF,startTime;
+/*gned long theta=0;
 PID_struct Motor_L,Motor_R;
-signed int dirX,dirY,dirZ;
-double theta;
+PID_struct Turn;
+signed long Setpoint = 100;
+signed char dir;
+signed int speed;*/
+signed long omegaX,omegaY,omegaZ;
+PID_struct qiao;
+
 unsigned char command;
+
+/*
+double getAngle(void)
+{
+    signed int dirX,dirY,dirZ;  
+    double theta;
+    dirX=(HMC5883_Get_x()-141)*100/78;
+    dirY=HMC5883_Get_y()-0;//没有使用
+    dirZ=HMC5883_Get_z()-1319;
+    if (dirX!=0)
+    {
+      theta=atan((double)dirZ/(double)dirX);
+      if (dirX<0)
+        theta+=3.141;
+      else if (dirZ<0)
+        theta+=6.283;
+    }
+    else
+    {
+      if (dirZ>0)
+        theta=1.570;
+      else
+        theta=4.712;
+    }
+    return theta;
+}*/
+
+signed int abs(signed int a)
+{
+  if (a<0) return -a;
+  else return a;
+}
 
 int main( void )
 {
@@ -66,9 +104,10 @@ int main( void )
   
 //  TimerA1_PWM_init();
   
+  
 //  UltraSonic_init();
 
-  UART_init(UCA1,9600);
+  UART_init(UCA0,9600);
   
   Motor_init();
   
@@ -78,7 +117,9 @@ int main( void )
   
 //  StepMotor_init();
   
-  HMC5883_init();
+//  HMC5883_init();
+  
+  L3G4200_init();
   
 //扫描版避障
   /*  
@@ -149,10 +190,21 @@ int main( void )
   Motor_config(600,600,600,600);
   while(TimeBase!=500);
 */
-  while(UCA1_GET_CHAR(&command));
+  qiao.myOutput = 0;
+  qiao.myInput = &omegaY;
+  qiao.mySetpoint = 0;
+  qiao.inAuto = 1;
+  PID_setOutputLimits(&qiao, (signed long)-1000, (signed long)1000);
+  qiao.SampleTime = 10;
+  PID_setControllerDirection(&qiao, 1);
+  PID_setTunings(&qiao, 500, 0, 10);//kp2100,ki4000
+  if (TimeBase>qiao.SampleTime)
+    qiao.lastTime = TimeBase-qiao.SampleTime;
+  else
+    qiao.lastTime = 0;
+//  while(UCA0_GET_CHAR(&command));
   startTime = TimeBase;
-  Motor_config(-700,-700,700,700);
-  
+  Motor_config(0,0,0,0);
   
   while(1)
   {
@@ -161,28 +213,82 @@ int main( void )
       if (nowTime != TimeBase)
       {
         nowTime = TimeBase;     //每一毫秒运行一次
-       
-        if ((nowTime % 10 == 0)&&(nowTime > 50)&&(nowTime < startTime+10000))
+        omegaY=(omegaY*9+L3G4200_GetY())/10;        
+        if (nowTime % 10 == 0)//&&(nowTime < startTime+5000))
         {
-          dirX=(HMC5883_Get_x()-141)*100/78;
-          dirY=HMC5883_Get_y()-0;//没有使用
-          dirZ=HMC5883_Get_z()-1319;
-          if (dirX!=0)
-          {
-            theta=atan((double)dirZ/(double)dirX);
-            if (dirX<0)
-              theta+=3.141;
-            else if (dirZ<0)
-              theta+=6.283;
-          }
+          
+//          UART_sendint(UCA0, (unsigned)(omegaY+32768));
+//          UART_sendstr(UCA0, " ");
+          
+          PID_compute(&qiao);
+          
+//         UART_sendint(UCA0, (unsigned)(qiao.myOutput+32768));
+//          UART_sendstr(UCA0, " ");
+          
+          if((qiao.myOutput < 500)&&(qiao.myOutput > -500))
+            Motor_brake(0xFF);
           else
           {
-            if (dirZ>0)
-              theta=1.570;
+            if (qiao.myOutput>0)
+              Motor_config((qiao.myOutput-500)/5+500,(qiao.myOutput-500)/5+500,(qiao.myOutput-500)/5+500,(qiao.myOutput-500)/5+500);
             else
-              theta=4.712;
+              Motor_config((qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500);
           }
-          UART_sendint(UCA1, (unsigned)(theta*1000+4096));
+        }/*
+        else if (nowTime > 5000+startTime)
+        {
+          Motor_config(0,0,0,0);
+          while(UCA0_GET_CHAR(&command));
+          startTime = TimeBase;
+          Motor_config(700,700,700,700);
+        }        */
+//电子罗盘（固定朝向）        
+/*
+        if (nowTime % 20 == 0)
+        {
+          theta = (signed long)(getAngle()*1000);
+          if (!UCA1_GET_CHAR(&command))
+          {
+            Setpoint = (command-48)*1571;
+          }
+          
+          if(abs(theta - Setpoint)>50)
+          {
+            if (theta <Setpoint)
+            {
+              if ((Setpoint-theta)<3140)
+                dir = 1;//counter-clockwise
+              else
+                dir = -1;
+            }
+            else
+            {
+              if ((theta-Setpoint)<3140)
+                dir = -1;
+              else
+                dir = 1;              
+            }
+            if(abs(theta-Setpoint)<3140)
+              speed = (signed int)(abs(theta-Setpoint));
+            else
+              speed = (signed int)((6280-abs(theta-Setpoint)));
+            speed = speed/8+600;
+            if (speed >1000) speed =1000;
+            Motor_config(-speed*dir,-speed*dir,speed*dir,speed*dir);            
+          }
+          else
+            Motor_config(0,0,0,0);   
+        }*/
+//电子罗盘（转圈返回角度）
+        /*
+        if ((nowTime % 20 == 0)&&(nowTime > 50)&&(nowTime < startTime+10000))
+        {
+
+          UART_sendint(UCA1, (unsigned)(dirX+5000));
+          UART_sendstr(UCA1, " ");
+          UART_sendint(UCA1, (unsigned)(dirZ+5000));
+          UART_sendstr(UCA1, " ");
+          UART_sendint(UCA1, (unsigned)(getAngle()*1000));
           UART_sendstr(UCA1, " ");
           _NOP();
         }
@@ -192,7 +298,7 @@ int main( void )
           while(UCA1_GET_CHAR(&command));
           startTime = TimeBase;
           Motor_config(-700,-700,700,700);
-        }
+        }*/
 
 //避障(while循环最小10ms)    
 /*            

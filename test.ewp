@@ -2009,6 +2009,12 @@
     <name>$PROJ_DIR$\IIC.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\L3G4200.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\L3G4200.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\LCD12864.c</name>
   </file>
   <file>
@@ -2028,6 +2034,9 @@
   </file>
   <file>
     <name>$PROJ_DIR$\MPY.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\MSPMATHLIB_IAR_msp430_small.lib</name>
   </file>
   <file>
     <name>$PROJ_DIR$\PhotoelectricEncoder.c</name>
