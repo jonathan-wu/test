@@ -200,15 +200,15 @@ int main( void )
   qiao.myInput = &thetaX;
   qiao.mySetpoint = 0;
   qiao.inAuto = 1;
-  PID_setOutputLimits(&qiao, (signed long)-1000, (signed long)1000);
+  PID_setOutputLimits(&qiao, (signed long)-800, (signed long)800);
   qiao.SampleTime = 10;
-  PID_setControllerDirection(&qiao, 1);
-  PID_setTunings(&qiao, 500, 0, 10);//kp2100,ki4000
+  PID_setControllerDirection(&qiao, 0);
+  PID_setTunings(&qiao, 80, 20, 10);//kp2100,ki4000
   if (TimeBase>qiao.SampleTime)
     qiao.lastTime = TimeBase-qiao.SampleTime;
   else
     qiao.lastTime = 0;
-  while(UCA1_GET_CHAR(&command));
+//  while(UCA1_GET_CHAR(&command));
   startTime = TimeBase;
   Motor_config(0,0,0,0);
   
@@ -219,7 +219,7 @@ int main( void )
       if (nowTime != TimeBase)
       {
         nowTime = TimeBase;     //每一毫秒运行一次
-        if ((nowTime % 10 == 0)&&(nowTime < startTime+15000))
+        if (nowTime % 10 == 0)//&&(nowTime < startTime+15000))
         {
           accelX=MPU6050_GetAX();
           accelY=MPU6050_GetAY();
@@ -231,13 +231,20 @@ int main( void )
           GA = (signed int)(asin((double)accelY/16384)/3.14159*18000);
           EA = GA-RA;
           SA = RA + EA * 5/100;//5s测试时间,100Hz工作速率
-          UART_sendint(UCA1, (unsigned int)(RA+32768));
-          UART_sendstr(UCA1, " ");
-          UART_sendint(UCA1, (unsigned int)(GA+32768));
-          UART_sendstr(UCA1, " ");          
-          UART_sendint(UCA1, (unsigned int)(SA+32768));
-          UART_sendstr(UCA1, " ");          
+          thetaX = SA;
+
+          PID_compute(&qiao);
           
+/*          if((qiao.myOutput < 500)&&(qiao.myOutput > -500))
+            Motor_brake(0xFF);
+          else
+          {
+            if (qiao.myOutput>0)
+              Motor_config((qiao.myOutput-500)/5+500,(qiao.myOutput-500)/5+500,(qiao.myOutput-500)/5+500,(qiao.myOutput-500)/5+500);
+            else
+              Motor_config((qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500);
+          }*/
+          Motor_config(qiao.myOutput,qiao.myOutput,qiao.myOutput,qiao.myOutput);
         }
 //角速度L3G4200控制跷跷板
 /*        
