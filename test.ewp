@@ -2030,6 +2030,12 @@
     <name>$PROJ_DIR$\Motor.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\MPU6050.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\MPU6050.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\MPY.c</name>
   </file>
   <file>

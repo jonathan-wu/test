@@ -29,7 +29,8 @@
 #include"UART.h"
 //#include"StepMotor.h"
 //#include"HMC5883.h"
-#include"L3G4200.h"
+//#include"L3G4200.h"
+#include"MPU6050.h"
 #include"PID.h"
 
 #define LEAST 550
@@ -43,7 +44,10 @@ PID_struct Turn;
 signed long Setpoint = 100;
 signed char dir;
 signed int speed;*/
-signed long omegaX,omegaY,omegaZ;
+signed int omegaX,omegaY,omegaZ;
+signed int accelX,accelY,accelZ;
+signed int RA,GA,SA,EA;
+signed long thetaX;
 PID_struct qiao;
 
 unsigned char command;
@@ -107,7 +111,7 @@ int main( void )
   
 //  UltraSonic_init();
 
-  UART_init(UCA0,9600);
+  UART_init(UCA1,9600);
   
   Motor_init();
   
@@ -119,7 +123,9 @@ int main( void )
   
 //  HMC5883_init();
   
-  L3G4200_init();
+//  L3G4200_init();
+  
+  MPU6050_init();
   
 //扫描版避障
   /*  
@@ -191,7 +197,7 @@ int main( void )
   while(TimeBase!=500);
 */
   qiao.myOutput = 0;
-  qiao.myInput = &omegaY;
+  qiao.myInput = &thetaX;
   qiao.mySetpoint = 0;
   qiao.inAuto = 1;
   PID_setOutputLimits(&qiao, (signed long)-1000, (signed long)1000);
@@ -202,7 +208,7 @@ int main( void )
     qiao.lastTime = TimeBase-qiao.SampleTime;
   else
     qiao.lastTime = 0;
-//  while(UCA0_GET_CHAR(&command));
+  while(UCA1_GET_CHAR(&command));
   startTime = TimeBase;
   Motor_config(0,0,0,0);
   
@@ -213,7 +219,28 @@ int main( void )
       if (nowTime != TimeBase)
       {
         nowTime = TimeBase;     //每一毫秒运行一次
-        omegaY=(omegaY*9+L3G4200_GetY())/10;        
+        if ((nowTime % 10 == 0)&&(nowTime < startTime+15000))
+        {
+          accelX=MPU6050_GetAX();
+          accelY=MPU6050_GetAY();
+          accelZ=MPU6050_GetAZ();
+          omegaX=MPU6050_GetGX();
+          omegaY=MPU6050_GetGY();
+          omegaZ=MPU6050_GetGZ();
+          RA = SA + (signed long)omegaX*2000/32768;//角速度积分，定点精度两位小数
+          GA = (signed int)(asin((double)accelY/16384)/3.14159*18000);
+          EA = GA-RA;
+          SA = RA + EA * 5/100;//5s测试时间,100Hz工作速率
+          UART_sendint(UCA1, (unsigned int)(RA+32768));
+          UART_sendstr(UCA1, " ");
+          UART_sendint(UCA1, (unsigned int)(GA+32768));
+          UART_sendstr(UCA1, " ");          
+          UART_sendint(UCA1, (unsigned int)(SA+32768));
+          UART_sendstr(UCA1, " ");          
+          
+        }
+//角速度L3G4200控制跷跷板
+/*        
         if (nowTime % 10 == 0)//&&(nowTime < startTime+5000))
         {
           
@@ -234,7 +261,8 @@ int main( void )
             else
               Motor_config((qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500);
           }
-        }/*
+        }*/
+        /*
         else if (nowTime > 5000+startTime)
         {
           Motor_config(0,0,0,0);
