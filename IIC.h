@@ -16,5 +16,6 @@ extern void IIC_writex(unsigned char j);
 extern unsigned char IIC_readx(void);
 extern void IIC_ack(void);
 extern unsigned char IIC_read(unsigned char Address,unsigned char address);             //读地址为address的值
+extern signed int IIC_readword(unsigned char Address,unsigned char address);
 extern void IIC_write(unsigned char Address,unsigned char address, unsigned char info); //写值info到地址address处
 #endif 

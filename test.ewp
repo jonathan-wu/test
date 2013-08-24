@@ -2024,6 +2024,12 @@
     <name>$PROJ_DIR$\main.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\MMA8452.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\MMA8452.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\Motor.c</name>
   </file>
   <file>

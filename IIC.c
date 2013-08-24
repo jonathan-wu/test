@@ -84,6 +84,32 @@ void IIC_ack(void)
 	scl_0;
 	delay_us(5);
 }
+signed int IIC_readword(unsigned char Address,unsigned char address)
+{
+        union
+        {
+          signed int x;
+          unsigned char i[2];
+        };
+	IIC_start();
+	IIC_writex(Address);
+	IIC_ack();
+	IIC_writex(address);
+	IIC_ack();
+	IIC_start();
+	IIC_writex(Address+1);
+	IIC_ack();
+	i[0] = IIC_readx();
+        sda_1;
+        scl_1;
+        delay_us(5);
+        scl_0;
+        delay_us(5);
+        i[1] = IIC_readx();
+	IIC_stop();
+	return(x);
+}
+
 unsigned char IIC_read(unsigned char Address,unsigned char address)
 {
 	unsigned char i;

@@ -18,6 +18,8 @@
 #define	GYRO_ZOUT_H		0x47
 #define	GYRO_ZOUT_L		0x48
 #define MPU6050_Address 0xD0        //…Ë±∏µÿ÷∑
+#define omegaX_offset -13
+#define accelZ_offset -2249
 extern void MPU6050_init(void);
 extern signed int MPU6050_GetAX();
 extern signed int MPU6050_GetAY();

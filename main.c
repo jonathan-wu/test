@@ -28,9 +28,13 @@
 
 #include"UART.h"
 //#include"StepMotor.h"
+
+#include "IIC.h"
 //#include"HMC5883.h"
-//#include"L3G4200.h"
-#include"MPU6050.h"
+#include"L3G4200.h"
+#include"MMA8452.h"
+//#include"MPU6050.h"
+
 #include"PID.h"
 
 #define LEAST 550
@@ -46,6 +50,7 @@ signed char dir;
 signed int speed;*/
 signed int omegaX,omegaY,omegaZ;
 signed int accelX,accelY,accelZ;
+signed long intAccelX,intAccelY,intAccelZ;
 signed int RA,GA,SA,EA;
 signed long thetaX;
 PID_struct qiao;
@@ -123,9 +128,13 @@ int main( void )
   
 //  HMC5883_init();
   
-//  L3G4200_init();
+  IIC_init();
   
-  MPU6050_init();
+  L3G4200_init();
+  
+  MMA8452_init();
+  
+//  MPU6050_init();
   
 //扫描版避障
   /*  
@@ -203,12 +212,12 @@ int main( void )
   PID_setOutputLimits(&qiao, (signed long)-800, (signed long)800);
   qiao.SampleTime = 10;
   PID_setControllerDirection(&qiao, 0);
-  PID_setTunings(&qiao, 80, 20, 10);//kp2100,ki4000
+  PID_setTunings(&qiao, 80, 20, 20);//kp2100,ki4000
   if (TimeBase>qiao.SampleTime)
     qiao.lastTime = TimeBase-qiao.SampleTime;
   else
     qiao.lastTime = 0;
-//  while(UCA1_GET_CHAR(&command));
+  while(UCA1_GET_CHAR(&command));
   startTime = TimeBase;
   Motor_config(0,0,0,0);
   
@@ -219,21 +228,50 @@ int main( void )
       if (nowTime != TimeBase)
       {
         nowTime = TimeBase;     //每一毫秒运行一次
-        if (nowTime % 10 == 0)//&&(nowTime < startTime+15000))
+        if ((nowTime % 50 == 0)&&(nowTime < startTime+5000))
         {
-          accelX=MPU6050_GetAX();
-          accelY=MPU6050_GetAY();
-          accelZ=MPU6050_GetAZ();
-          omegaX=MPU6050_GetGX();
-          omegaY=MPU6050_GetGY();
-          omegaZ=MPU6050_GetGZ();
-          RA = SA + (signed long)omegaX*2000/32768;//角速度积分，定点精度两位小数
-          GA = (signed int)(asin((double)accelY/16384)/3.14159*18000);
-          EA = GA-RA;
-          SA = RA + EA * 5/100;//5s测试时间,100Hz工作速率
+//          accelX=(accelX+MMA8452_GetAX())/2L;
+//          accelY=(accelY+MMA8452_GetAY())/2L;
+//          accelZ=(accelZ+MMA8452_GetAZ())/2L;
+          intAccelX += accelX;
+          intAccelY += accelY;
+          intAccelZ += accelZ;
+          omegaX=L3G4200_GetX();
+          omegaY=L3G4200_GetY();
+          omegaZ=L3G4200_GetZ();
+          RA = RA + (signed long)omegaX*2000/32768;//角速度积分，定点精度两位小数
+          GA = (signed int)(acos((double)accelZ/16384)/3.14159*18000);
+          if (accelY < 0)
+            GA=-GA;
+          EA = (GA-RA)/3; //尝试/3衰减
+          if (EA > 30)
+            EA=30;
+          else if (EA < -30)
+            EA=-30;
+          SA = RA + EA;
           thetaX = SA;
+          
+          UART_sendint(UCA1, (unsigned)(omegaX+32768));
+          UART_sendstr(UCA1, " ");
+          UART_sendint(UCA1, (unsigned)(omegaY+32768));
+          UART_sendstr(UCA1, " ");
+          UART_sendint(UCA1, (unsigned)(omegaZ+32768));
+          UART_sendstr(UCA1, " ");          
+          /*
+          UART_sendint(UCA1, (unsigned)(accelX+32768));
+          UART_sendstr(UCA1, " ");
+          UART_sendint(UCA1, (unsigned)(accelY+32768));
+          UART_sendstr(UCA1, " ");
+          UART_sendint(UCA1, (unsigned)(accelZ+32768));
+          UART_sendstr(UCA1, " ");          */
+//          UART_sendint(UCA1, (unsigned)(RA+32768));
+//          UART_sendstr(UCA1, " ");          
+//          UART_sendint(UCA1, (unsigned)(GA+32768));
+//          UART_sendstr(UCA1, " ");                    
+//          UART_sendint(UCA1, (unsigned)(SA+32768));
+//          UART_sendstr(UCA1, " ");                    
 
-          PID_compute(&qiao);
+//          PID_compute(&qiao);
           
 /*          if((qiao.myOutput < 500)&&(qiao.myOutput > -500))
             Motor_brake(0xFF);
@@ -244,7 +282,7 @@ int main( void )
             else
               Motor_config((qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500,(qiao.myOutput+500)/5-500);
           }*/
-          Motor_config(qiao.myOutput,qiao.myOutput,qiao.myOutput,qiao.myOutput);
+//          Motor_config(qiao.myOutput,qiao.myOutput,qiao.myOutput,qiao.myOutput);
         }
 //角速度L3G4200控制跷跷板
 /*        

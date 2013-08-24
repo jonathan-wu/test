@@ -3,7 +3,6 @@
 #include "IIC.h"//…Ë±∏µÿ÷∑0xD2
 void L3G4200_init()
 {
-   IIC_init();
    IIC_write(0xD2,CTRL_REG1, 0xcf);   //
    IIC_write(0xD2,CTRL_REG2, 0x00);   //
    IIC_write(0xD2,CTRL_REG3, 0x08);   //

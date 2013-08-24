@@ -1,8 +1,7 @@
-//#include"msp430f5438.h"
-//#include"DigtalTube.h"
+#include"msp430f5438.h"
 
 //该版本I2C没有经过调试，不要使用
-/*
+
 unsigned char RXData,TXData;
 void I2C_Master_init()
 {
@@ -19,7 +18,7 @@ void I2C_Master_init()
     
     UCB0IE    |= UCTXIE;
 }
-
+/*
 void I2C_Slave_init()
 {
     P3SEL     |= BIT1 + BIT2;               // Assign I2C pins to USCI_B0
@@ -29,7 +28,7 @@ void I2C_Slave_init()
     UCB0CTL1  &= ~UCSWRST;                  // Clear SW reset, resume operation
     UCB0IE    |= UCRXIE+UCTXIE;             // Enable TX interrupt
                                             
-}
+}*/
 
 // USCI_B0 Data ISR
 #pragma vector = USCI_B0_VECTOR
@@ -48,7 +47,6 @@ __interrupt void USCI_B0_ISR(void)
   case  8: break;                           // Vector  8: STPIFG
   case 10:                                  // Vector 10: RXIFG
     RXData = UCB0RXBUF;                     // Get RX data
-    DigtalTube_set(RXData);
     TXData = RXData;
     break;
   case 12:                                  // Vector 12: TXIFG
@@ -56,4 +54,3 @@ __interrupt void USCI_B0_ISR(void)
   default: break; 
   }
 }
-*/
